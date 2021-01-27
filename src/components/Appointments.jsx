@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import Box from "@material-ui/core/Box";
+import Hidden from "@material-ui/core/Hidden";
 import { Card, LabelCard } from "./index";
 
 const useStyles = makeStyles((theme) => ({
@@ -59,7 +60,13 @@ export default class Appointments extends React.Component {
   render() {
     return (
       <Box>
-        <LabelCard />
+        <Hidden mdDown>
+          <LabelCard />
+        </Hidden>
+        <Hidden lgUp>
+          <br></br>
+          <br></br>
+        </Hidden>
         {this.state.sites.map((site) => (
           <Card {...site} />
         ))}

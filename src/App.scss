@@ -45,25 +45,6 @@
   margin: 0 auto;
 }
 
-.show-small,
-.show-small-inline {
-  display: none !important;
-}
-
-@media (max-width: 600px) {
-  .hide-small {
-    display: none !important;
-  }
-
-  .show-small-inline {
-    display: inline;
-  }
-
-  .show-small-block {
-    display: block;
-  }
-}
-
 .MuiTypography-body1 {
   font-weight: 300 !important;
   line-height: 1.6 !important;

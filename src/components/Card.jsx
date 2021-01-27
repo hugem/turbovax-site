@@ -5,6 +5,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
 import Moment from "react-moment";
 
@@ -31,9 +32,9 @@ export default function Card({
   return (
     <MaterialCard className={classes.card}>
       <CardContent>
-        <Grid container spacing={3} display="flex">
+        <Grid container spacing={2} display="flex">
           <Grid item xs={12} sm={6} className={classes.column}>
-            <Typography variant="h5" component="h2">
+            <Typography variant="h5" component="h3">
               {siteName}
             </Typography>
             <Typography className={classes.pos} color="textSecondary">
@@ -41,73 +42,54 @@ export default function Card({
             </Typography>
           </Grid>
           <Grid item xs={12} sm={3}>
-            <Typography
-              variant="overline"
-              display={"inline"}
-              className={"show-small-inline"}
-            >
-              Updated:
-            </Typography>
+            <Hidden smUp>
+              <Typography variant="overline" display={"inline"}>
+                Updated At:
+              </Typography>
+            </Hidden>
             <Typography variant="overline" display={"inline"}>
               <Moment fromNow={true}>{updatedAt}</Moment>
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={3}>
-            <Button
-              size="medium"
-              variant="contained"
-              color="primary"
-              className={classes.reserveButton}
-              disabled={!isAvailable}
-              href={url}
-              target={"_blank"}
-            >
-              {isAvailable ? "Reserve" : "No Appts"}
-            </Button>
-          </Grid>
+          <Hidden xsDown>
+            <Grid item xs={12} sm={3}>
+              <Button
+                size="medium"
+                variant="contained"
+                color="primary"
+                className={classes.reserveButton}
+                disabled={!isAvailable}
+                href={url}
+                target={"_blank"}
+              >
+                {isAvailable ? "Reserve" : "No Appts"}
+              </Button>
+            </Grid>
+          </Hidden>
           <Grid item>
             {isAvailable ? (
-              <Typography>appointments</Typography>
+              <Typography>{appointments}</Typography>
             ) : (
-              <Typography>No availability</Typography>
+              <Typography>No availability at this time</Typography>
             )}
           </Grid>
+          <Hidden smUp>
+            <Grid item xs={12} sm={3}>
+              <Button
+                size="medium"
+                variant="contained"
+                color="primary"
+                className={classes.reserveButton}
+                disabled={!isAvailable}
+                href={url}
+                target={"_blank"}
+              >
+                {isAvailable ? "Reserve" : "No Appts"}
+              </Button>
+            </Grid>
+          </Hidden>
         </Grid>
       </CardContent>
     </MaterialCard>
   );
 }
-
-// return (
-//     <MaterialCard className={classes.card}>
-//       <CardContent>
-//         <Grid container spacing={3} display="flex">
-//           <Grid item xs={12} sm={5} order={5} className={classes.column}>
-//             <Typography variant="h5" component="h2">
-//               {siteName}
-//             </Typography>
-//             <Typography className={classes.pos} color="textSecondary">
-//               {portalName}
-//             </Typography>
-//             <Typography variant="overline">Updated at: {updatedAt}</Typography>
-//           </Grid>
-//           <Grid item xs={12} sm={5}>
-//             <Typography>{appointments}</Typography>
-//           </Grid>
-//           <Grid item xs={12} sm={2}>
-//             <Button
-//               size="medium"
-//               variant="contained"
-//               color="primary"
-//               className={classes.reserveButton}
-//               disabled={!isAvailable}
-//               href={url}
-//               target={"_blank"}
-//             >
-//               {isAvailable ? "Reserve" : "N/A"}
-//             </Button>
-//           </Grid>
-//         </Grid>
-//       </CardContent>
-//     </MaterialCard>
-//   );

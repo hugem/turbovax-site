@@ -20,7 +20,7 @@ export default function LabelCard() {
   return (
     <Box>
       <CardContent className={`hide-small other`}>
-        <Grid container spacing={3} display="flex">
+        <Grid container spacing={2} display="flex">
           <Grid item xs={12} sm={6} className={classes.column}>
             <Typography variant="overline">Center/Portal</Typography>
           </Grid>
