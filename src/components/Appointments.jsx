@@ -44,6 +44,13 @@ export default class Appointments extends React.Component {
         );
 
         const sortedSites = mappedSites.sort((a, b) => {
+          if (a.isAvailable) {
+            return -1;
+          }
+          if (b.isAvailable) {
+            return 1;
+          }
+
           if (a.updatedAt > b.updatedAt) {
             return -1;
           }
