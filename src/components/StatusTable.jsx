@@ -22,22 +22,22 @@ const rows = [
     "NYC Vaccine Hub",
     "https://vaccinepod.nyc.gov",
     20,
-    "Not accepting appointments",
-    "Jan 21"
+    "Active",
+    "Jan 29"
   ),
   createData(
     "Health and Hospitals",
     "https://covid19.nychealthandhospitals.org/UnaffiliatedHealthCareWorkers",
     14,
-    "Not accepting appointments",
-    "Jan 21"
+    "Active",
+    "Jan 29"
   ),
   createData(
     "NYS Vaccination Centers",
     "https://am-i-eligible.covid19vaccine.health.ny.gov/",
-    3,
-    "Not accepting appointments",
-    "Jan 20"
+    6,
+    "Active",
+    "Jan 29"
   ),
 ];
 

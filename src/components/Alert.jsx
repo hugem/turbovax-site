@@ -3,9 +3,8 @@ import MaterialAlert from "@material-ui/lab/Alert";
 export default function Alert() {
   return (
     <MaterialAlert severity="warning">
-      <b>Update (1/20):</b> Due to a vaccine shortage, city/state reservations
-      are now paused. We will continue to query for availability, so be sure to
-      check in for updates.
+      <b>Update (1/29):</b> Authorities have resumed reservations at the three
+      big government vaccination centers.
     </MaterialAlert>
   );
 }
