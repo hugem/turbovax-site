@@ -26,7 +26,7 @@ const rows = [
     "Jan 29"
   ),
   createData(
-    "Health and Hospitals",
+    "NYC Health and Hospitals",
     "https://covid19.nychealthandhospitals.org/UnaffiliatedHealthCareWorkers",
     14,
     "Active",
