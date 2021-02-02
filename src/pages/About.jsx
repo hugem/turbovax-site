@@ -40,7 +40,7 @@ export default function About() {
         <h2 class="header-text">Supported Websites</h2>
         <Typography>
           We currently support 3 major government vaccine websites that handle
-          reservations for 37 vaccine administration sites.
+          reservations for 42 vaccine administration sites.
         </Typography>
         <br></br>
         <StatusTable />
