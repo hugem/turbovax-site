@@ -19,16 +19,16 @@ function createData(name, url, numSites, status, statusUpdatedAt) {
 
 const rows = [
   createData(
-    "NYC Vaccine Hub",
-    "https://vaccinepod.nyc.gov",
-    20,
-    "Active",
-    "Jan 29"
+    "NYC Vaccine Hub/Vax4NYC (NEW)",
+    "https://vax4nyc.nyc.gov/patient/s/",
+    16,
+    "In Progress",
+    "Feb 1"
   ),
   createData(
     "NYC Health and Hospitals",
     "https://covid19.nychealthandhospitals.org/UnaffiliatedHealthCareWorkers",
-    14,
+    20,
     "Active",
     "Jan 29"
   ),
