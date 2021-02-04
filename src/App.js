@@ -39,7 +39,7 @@ const useStyles = makeStyles({
   footerText: {
     fontSize: ".75rem",
     textAlign: "center",
-    margin: "3rem",
+    margin: "3rem 0",
   },
 });
 

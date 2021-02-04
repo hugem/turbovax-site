@@ -29,6 +29,7 @@ export default class Appointments extends React.Component {
       url: props.url,
       appointments: props.appointment_times,
       isAvailable: props.is_available,
+      area: props.area,
     };
   }
 
@@ -67,11 +68,10 @@ export default class Appointments extends React.Component {
   render() {
     return (
       <Box>
-        <Hidden mdDown>
+        <Hidden xsDown>
           <LabelCard />
         </Hidden>
-        <Hidden lgUp>
-          <br></br>
+        <Hidden smUp>
           <br></br>
         </Hidden>
         {this.state.sites.map((site) => (

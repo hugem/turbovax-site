@@ -1,10 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import Card from "./Card";
+import Hidden from "@material-ui/core/Hidden";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,12 +21,25 @@ export default function Header() {
   const classes = useStyles();
 
   return (
-    <Typography
-      variant="h3"
-      component="h1"
-      className={`${classes.title} header-text`}
-    >
-      TurboVax
-    </Typography>
+    <header>
+      <Hidden xsDown>
+        <Typography
+          variant="h3"
+          component="h1"
+          className={`${classes.title} header-text`}
+        >
+          TurboVax
+        </Typography>
+      </Hidden>
+      <Hidden smUp>
+        <Typography
+          variant="h4"
+          component="h1"
+          className={`${classes.title} header-text`}
+        >
+          TurboVax
+        </Typography>
+      </Hidden>
+    </header>
   );
 }

@@ -1,22 +1,25 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import MaterialCard from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
+import Chip from "@material-ui/core/Chip";
 import Moment from "react-moment";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   card: {
     marginBottom: "1rem",
   },
   reserveButton: {
     width: "100%",
   },
-});
+  chip: {
+    margin: theme.spacing(1),
+  },
+}));
 
 export default function Card({
   siteName,
@@ -25,6 +28,7 @@ export default function Card({
   url,
   appointments,
   isAvailable,
+  area,
 }) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
@@ -37,14 +41,28 @@ export default function Card({
             <Typography variant="h5" component="h3">
               {siteName}
             </Typography>
-            <Typography className={classes.pos} color="textSecondary">
+            {/* <Typography className={classes.pos} color="textSecondary">
               {portalName}
-            </Typography>
+            </Typography> */}
+            <Chip
+              size={"small"}
+              color="primary"
+              variant="outlined"
+              lassName={classes.chip}
+              label={portalName}
+            />
+            <Chip
+              size={"small"}
+              color="primary"
+              variant="outlined"
+              className={classes.chip}
+              label={area}
+            />
           </Grid>
           <Grid item xs={12} sm={3}>
             <Hidden smUp>
               <Typography variant="overline" display={"inline"}>
-                Updated At:
+                Updated:
               </Typography>
             </Hidden>
             <Typography variant="overline" display={"inline"}>

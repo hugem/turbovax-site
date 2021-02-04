@@ -132,14 +132,13 @@ export default function About() {
             </Typography>
             <Typography>
               <u>
-                <a href="https://vaccinepod.nyc.gov" target="_blank">
-                  For the NYC Vaccine Hub website
+                <a href="https://vax4nyc.nyc.gov/patient/s/" target="_blank">
+                  For the NYC Vaccine Hub (Vax4NYC) website
                 </a>
               </u>
-              : Fill out your data until you are at Step 6. To check
-              availability, select the relevant administration site and date. If
-              no availability, click <code>Previous</code> to recheck
-              availability at another site.
+              : Fill out your data until you are at Step 3 (Schedule An
+              Appointments). If no availability, select a new date to quickly to
+              recheck availability without resubmitting form.
             </Typography>
           </Typography>
         </Box>

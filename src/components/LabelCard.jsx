@@ -25,7 +25,7 @@ export default function LabelCard() {
             <Typography variant="overline">Center/Portal</Typography>
           </Grid>
           <Grid item xs={12} sm={3}>
-            <Typography variant="overline">Updated at</Typography>
+            <Typography variant="overline">Updated</Typography>
           </Grid>
           <Grid item xs={12} sm={3}>
             <Typography variant="overline">Link</Typography>
