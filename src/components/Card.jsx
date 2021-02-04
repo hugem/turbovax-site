@@ -41,9 +41,6 @@ export default function Card({
             <Typography variant="h5" component="h3">
               {siteName}
             </Typography>
-            {/* <Typography className={classes.pos} color="textSecondary">
-              {portalName}
-            </Typography> */}
             <Chip
               size={"small"}
               color="primary"
