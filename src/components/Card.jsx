@@ -8,6 +8,9 @@ import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
 import Moment from "react-moment";
+import { useTheme } from "@material-ui/core/styles";
+
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -19,12 +22,21 @@ const useStyles = makeStyles((theme) => ({
   chip: {
     margin: theme.spacing(1),
   },
+  cardContent: {
+    paddingBottom: "16px!important",
+  },
+  lastAvailableAtLabel: {
+    lineHeight: "initial",
+  },
+  lastAvailableAtValue: {
+    fontSize: ".8rem",
+  },
 }));
 
 export default function Card({
   siteName,
   portalName,
-  updatedAt,
+  lastAvailableAt,
   url,
   appointments,
   isAvailable,
@@ -32,13 +44,24 @@ export default function Card({
 }) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
+  const theme = useTheme();
+
+  const lastUpdatedClasses = useMediaQuery(theme.breakpoints.up("sm"))
+    ? {
+        direction: "column",
+        justify: "flex-start",
+        alignItems: "flex-start",
+      }
+    : {
+        justify: "space-between",
+      };
 
   return (
-    <MaterialCard className={classes.card}>
-      <CardContent>
+    <MaterialCard className={classes.card} variant="outlined">
+      <CardContent className={classes.cardContent}>
         <Grid container spacing={2} display="flex">
           <Grid item xs={12} sm={6} className={classes.column}>
-            <Typography variant="h5" component="h3">
+            <Typography variant="h6" component="h3">
               {siteName}
             </Typography>
             <Chip
@@ -56,15 +79,27 @@ export default function Card({
               label={area}
             />
           </Grid>
-          <Grid item xs={12} sm={3}>
-            <Hidden smUp>
-              <Typography variant="overline" display={"inline"}>
-                Updated:
+          <Grid
+            item
+            container
+            spacing={1}
+            {...lastUpdatedClasses}
+            xs={12}
+            sm={3}
+          >
+            <Grid item>
+              <Typography
+                variant="overline"
+                className={classes.lastAvailableAtLabel}
+              >
+                Last available
               </Typography>
-            </Hidden>
-            <Typography variant="overline" display={"inline"}>
-              <Moment fromNow={true}>{updatedAt}</Moment>
-            </Typography>
+            </Grid>
+            <Grid item>
+              <Typography className={classes.lastAvailableAtValue}>
+                <Moment fromNow={true}>{lastAvailableAt}</Moment>
+              </Typography>
+            </Grid>
           </Grid>
           <Hidden xsDown>
             <Grid item xs={12} sm={3}>
@@ -77,17 +112,15 @@ export default function Card({
                 href={url}
                 target={"_blank"}
               >
-                {isAvailable ? "Reserve" : "No Appts"}
+                {isAvailable ? "Reserve" : "No Availability"}
               </Button>
             </Grid>
           </Hidden>
-          <Grid item>
-            {isAvailable ? (
+          {isAvailable && (
+            <Grid item>
               <Typography>{appointments}</Typography>
-            ) : (
-              <Typography>No availability at this time</Typography>
-            )}
-          </Grid>
+            </Grid>
+          )}
           <Hidden smUp>
             <Grid item xs={12} sm={3}>
               <Button
@@ -99,7 +132,7 @@ export default function Card({
                 href={url}
                 target={"_blank"}
               >
-                {isAvailable ? "Reserve" : "No Appts"}
+                {isAvailable ? "Reserve" : "No Availability"}
               </Button>
             </Grid>
           </Hidden>

@@ -25,7 +25,7 @@ export default class Appointments extends React.Component {
     return {
       siteName: props.site_name,
       portalName: props.portal_name,
-      updatedAt: props.updated_at,
+      lastAvailableAt: props.last_available_at,
       url: props.url,
       appointments: props.appointment_times,
       isAvailable: props.is_available,
@@ -52,10 +52,10 @@ export default class Appointments extends React.Component {
             return 1;
           }
 
-          if (a.updatedAt > b.updatedAt) {
+          if (a.lastAvailableAt > b.lastAvailableAt) {
             return -1;
           }
-          if (a.updatedAt < b.updatedAt) {
+          if (a.lastAvailableAt < b.lastAvailableAt) {
             return 1;
           }
           return 0;
@@ -68,12 +68,6 @@ export default class Appointments extends React.Component {
   render() {
     return (
       <Box>
-        <Hidden xsDown>
-          <LabelCard />
-        </Hidden>
-        <Hidden smUp>
-          <br></br>
-        </Hidden>
         {this.state.sites.map((site) => (
           <Card {...site} />
         ))}

@@ -1,26 +1,27 @@
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import Link from "@material-ui/core/Link";
 
 export default function Intro() {
   return (
-    <Box p={2}>
+    <Box px={2}>
       <Typography>
         TurboVax finds the latest vaccine appointments from 42 city and
-        state-run administration sites in the NYC-region. There are two ways
-        that you can use our tool:
+        state-run administration sites in the NYC area. There are two ways that
+        you can use our tool:
       </Typography>
       <ol>
         <li>
           <Typography>
             Follow our Twitter account (
-            <a
+            <Link
               target="_blank"
               href="https://twitter.com/turbovax"
               rel="noreferrer"
             >
               @turbovax
-            </a>
-            ) to be instantly notified when new appointments open up.
+            </Link>
+            ) to be instantly notified when appointments open up.
           </Typography>
         </li>
         <li>

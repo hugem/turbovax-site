@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Hidden from "@material-ui/core/Hidden";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,13 +24,15 @@ export default function Header() {
   return (
     <header>
       <Hidden xsDown>
-        <Typography
-          variant="h3"
-          component="h1"
-          className={`${classes.title} header-text`}
-        >
-          TurboVax
-        </Typography>
+        <Box m={2}>
+          <Typography
+            variant="h3"
+            component="h1"
+            className={`${classes.title} header-text`}
+          >
+            TurboVax
+          </Typography>
+        </Box>
       </Hidden>
       <Hidden smUp>
         <Typography
