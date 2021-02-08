@@ -1,15 +1,16 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
-import Alert from "@material-ui/lab/Alert";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 import Moment from "react-moment";
+import { useTheme } from "@material-ui/core/styles";
 
-export default class Summary extends React.Component {
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+
+class Summary extends React.Component {
   state = {
     lastUpdatedAt: null,
     hasAvailability: null,
@@ -50,7 +51,7 @@ export default class Summary extends React.Component {
               </Box>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Box p={2}>
+              <Box p={2} {...this.props.hasAvailabilityClasses}>
                 <Typography>
                   <b>Appointments: </b>
                   {this.state.hasAvailability === null
@@ -67,3 +68,14 @@ export default class Summary extends React.Component {
     );
   }
 }
+
+function StyledSummary(props) {
+  const theme = useTheme();
+  const hasAvailabilityClasses = useMediaQuery(theme.breakpoints.up("sm"))
+    ? {}
+    : { borderTop: 1, borderColor: "rgba(0, 0, 0, 0.12)" };
+
+  return <Summary hasAvailabilityClasses={hasAvailabilityClasses} {...props} />;
+}
+
+export default StyledSummary;
