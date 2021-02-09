@@ -6,7 +6,7 @@ export default function Intro() {
   return (
     <Box px={2}>
       <Typography>
-        TurboVax finds the latest vaccine appointments from 42 city and
+        TurboVax finds the latest vaccine appointments from 43 city and
         state-run administration sites in the NYC area. There are two ways that
         you can use our tool:
       </Typography>

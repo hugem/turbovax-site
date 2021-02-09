@@ -90,15 +90,16 @@ function Footer() {
   const classes = useStyles();
   return (
     <footer className={classes.footer}>
-      <Typography className={classes.footerText} color="textSecondary">
-        2021 © TurboVax
-      </Typography>
-      <Typography className={classes.footerText} color="textSecondary">
-        This website is provided “as is” and TurboVax expressly disclaims all
-        implied warranty of any kind, and is not responsible for liability for,
-        damages of any kind arising out of use, reference to, or reliance on any
-        information contained within site. The content published on our site
-        does not constitute any form of recommendation or medical advice.
+      <Typography className={classes.footerText}>2021 © TurboVax</Typography>
+      <Typography className={classes.footerText}>
+        This website is provided “as is” and your use or reliance on such
+        materials are solely at your own risk. TurboVax expressly disclaims all
+        implied warranty of any kind, and shall not be held responsible or
+        liable, directly or indirectly, for any loss or damage caused or alleged
+        to have been caused in any way whatsoever related to any advice,
+        opinions, statements or other information displayed or distributed on
+        the site. The content published on our site does not constitute any form
+        of recommendation or medical advice.
       </Typography>
     </footer>
   );

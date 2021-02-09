@@ -40,7 +40,12 @@ export default function About() {
         <h2 class="header-text">Supported Websites</h2>
         <Typography>
           We currently support 3 major government vaccine websites that handle
-          reservations for 42 vaccine administration sites.
+          reservations for 43 vaccine administration sites. Details for other
+          adminstration sites can be found at{" "}
+          <Link href="https://vaccinefinder.nyc.gov/" target="_blank">
+            vaccinefinder.nyc.gov
+          </Link>
+          .
         </Typography>
         <br></br>
         <StatusTable />
@@ -75,8 +80,8 @@ export default function About() {
           </Typography>
           <Typography>
             Simply put: TurboVax queries vaccine scheduling websites to find
-            available appointment slots. It <u>cannot</u>
-            book appointments on your behalf.
+            available appointment slots. It <u>cannot</u> book appointments on
+            your behalf.
           </Typography>
         </Box>
         <Box marginBottom={4}>
@@ -137,8 +142,9 @@ export default function About() {
                 </a>
               </u>
               : Fill out your data until you are at Step 3 (Schedule An
-              Appointments). If no availability, select a new date to quickly to
-              recheck availability without resubmitting form.
+              Appointments). If no availability, select a new date or enter a
+              zip code to quickly to recheck availability without resubmitting
+              form.
             </Typography>
           </Typography>
         </Box>
