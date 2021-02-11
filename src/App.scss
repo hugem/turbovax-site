@@ -27,4 +27,6 @@ ul li {
   font-family: "Merriweather", Georgia !important;
   letter-spacing: 1px !important;
   font-weight: 700 !important;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern";
 }

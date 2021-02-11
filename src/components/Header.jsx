@@ -36,7 +36,7 @@ export default function Header() {
       </Hidden>
       <Hidden smUp>
         <Typography
-          variant="h4"
+          variant="h5"
           component="h1"
           className={`${classes.title} header-text`}
         >

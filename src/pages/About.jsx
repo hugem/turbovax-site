@@ -41,7 +41,7 @@ export default function About() {
         <Typography>
           We currently support 3 major government vaccine websites that handle
           reservations for 43 vaccine administration sites. Details for other
-          adminstration sites can be found at{" "}
+          administration sites can be found at{" "}
           <Link href="https://vaccinefinder.nyc.gov/" target="_blank">
             vaccinefinder.nyc.gov
           </Link>
@@ -153,10 +153,46 @@ export default function About() {
             <strong>How reliable is TurboVax?</strong>
           </Typography>
           <Typography>
-            Unclear! This is currently just some code running on some guy's
-            laptop—anything as much as a wifi outage could knock it out. We also
-            do not have any special access to proprietary data; our work could
-            be undone anytime if authorities want to shut this down.
+            We try our best to deliver good data but cannot offer any warranty
+            on the accuracy of the data. This is a volunteer effort—please
+            adjust your expectations accordingly.
+          </Typography>
+        </Box>
+        <Box marginBottom={4}>
+          <Typography>
+            <strong>How can I contribute?</strong>
+          </Typography>
+          <Typography>
+            We appreciate your offers of generosity but do not need the funding.
+            Instead, we'd kindly ask you to consider donating to{" "}
+            <Link
+              target="_blank"
+              href="https://www.welcometochinatown.com/"
+              rel="noreferrer"
+            >
+              Welcome to Chinatown
+            </Link>
+            , a grassroots initiative to support Chinatown businesses and
+            amplify community voices in order to preserve one of New York City's
+            most vibrant neighborhoods.
+          </Typography>
+        </Box>
+        <Box marginBottom={4}>
+          <Typography>
+            <strong>Will you open source this?</strong>
+          </Typography>
+          <Typography>
+            The answer is currently no, because the code is not reusable. One
+            person cannot put something like this into the world without taking
+            tons of{" "}
+            <Link
+              target="_blank"
+              href="https://twitter.com/turbovax/status/1359508343908368385"
+              rel="noreferrer"
+            >
+              shortcuts
+            </Link>{" "}
+            that would be unintelligable to other engineers.
           </Typography>
         </Box>
       </section>
