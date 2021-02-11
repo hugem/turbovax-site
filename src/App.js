@@ -35,6 +35,7 @@ const useStyles = makeStyles({
   },
   footer: {
     marginTop: "2rem",
+    marginBottom: "2rem",
   },
   footerText: {
     // fontSize: ".8rem",
@@ -98,8 +99,8 @@ function Footer() {
         held responsible or liable, directly or indirectly, for any loss or
         damage caused or alleged to have been caused in any way whatsoever
         related to any advice, opinions, statements or other information
-        displayed or distributed on the site. The content published on our site
-        does not constitute any form of recommendation or medical advice.
+        displayed on the site. The content published on our site does not
+        constitute any form of recommendation or medical advice.
       </Typography>
     </footer>
   );
