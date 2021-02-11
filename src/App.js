@@ -34,12 +34,12 @@ const useStyles = makeStyles({
     textDecoration: "none",
   },
   footer: {
-    // padding: '3rem',
+    marginTop: "2rem",
   },
   footerText: {
-    fontSize: ".75rem",
+    // fontSize: ".8rem",
     textAlign: "center",
-    margin: "3rem 0",
+    marginTop: "4rem",
   },
 });
 
@@ -92,14 +92,14 @@ function Footer() {
     <footer className={classes.footer}>
       <Typography className={classes.footerText}>2021 © TurboVax</Typography>
       <Typography className={classes.footerText}>
-        This website is provided “as is” and your use or reliance on such
-        materials are solely at your own risk. TurboVax expressly disclaims all
-        implied warranty of any kind, and shall not be held responsible or
-        liable, directly or indirectly, for any loss or damage caused or alleged
-        to have been caused in any way whatsoever related to any advice,
-        opinions, statements or other information displayed or distributed on
-        the site. The content published on our site does not constitute any form
-        of recommendation or medical advice.
+        This website is provided “as is” and your use or reliance on content and
+        materials provided on the site are solely at your own risk. TurboVax
+        expressly disclaims all implied warranty of any kind, and shall not be
+        held responsible or liable, directly or indirectly, for any loss or
+        damage caused or alleged to have been caused in any way whatsoever
+        related to any advice, opinions, statements or other information
+        displayed or distributed on the site. The content published on our site
+        does not constitute any form of recommendation or medical advice.
       </Typography>
     </footer>
   );
