@@ -27,9 +27,10 @@ export default class Appointments extends React.Component {
       portalName: props.portal_name,
       lastAvailableAt: props.last_available_at,
       url: props.url,
-      appointments: props.appointment_times,
+      appointments: props.appointment_times.split(";"),
       isAvailable: props.is_available,
       area: props.area,
+      isActive: props.is_active,
     };
   }
 
@@ -40,9 +41,10 @@ export default class Appointments extends React.Component {
       )
       .then((res) => {
         const jsonList = res.data.feed.entry;
-        const mappedSites = jsonList.map((list) =>
-          this.mapPersonToVars(JSON.parse(list.content.$t))
-        );
+        const mappedSites = jsonList
+          .filter((info) => info.content.$t !== "")
+          .map((list) => this.mapPersonToVars(JSON.parse(list.content.$t)))
+          .filter((site) => site.isActive);
 
         const sortedSites = mappedSites.sort((a, b) => {
           if (a.isAvailable) {
@@ -68,8 +70,8 @@ export default class Appointments extends React.Component {
   render() {
     return (
       <Box>
-        {this.state.sites.map((site) => (
-          <Card {...site} />
+        {this.state.sites.map((site, index) => (
+          <Card {...site} key={index} />
         ))}
       </Box>
     );

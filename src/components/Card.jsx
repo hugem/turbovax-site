@@ -56,6 +56,8 @@ export default function Card({
         justify: "space-between",
       };
 
+  console.log(appointments);
+
   return (
     <MaterialCard className={classes.card} variant="outlined">
       <CardContent className={classes.cardContent}>
@@ -68,7 +70,6 @@ export default function Card({
               size={"small"}
               color="primary"
               variant="outlined"
-              lassName={classes.chip}
               label={portalName}
             />
             <Chip
@@ -118,7 +119,9 @@ export default function Card({
           </Hidden>
           {isAvailable && (
             <Grid item>
-              <Typography>{appointments}</Typography>
+              {appointments.map((appointment) => (
+                <Typography>{appointment}</Typography>
+              ))}
             </Grid>
           )}
           <Hidden smUp>

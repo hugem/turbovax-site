@@ -38,9 +38,6 @@ export default function Intro() {
       <Typography>
         Availability for local clinics/pharmacies can be found at{" "}
         <Link
-          NYC
-          Vaccine
-          List
           target="_blank"
           href="https://nycvaccinelist.com/"
           rel="noreferrer"
@@ -50,9 +47,6 @@ export default function Intro() {
         . If you found TurboVax to be helpful, please consider making a donation
         to{" "}
         <Link
-          NYC
-          Vaccine
-          List
           target="_blank"
           href="https://www.welcometochinatown.com/"
           rel="noreferrer"
