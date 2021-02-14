@@ -6,6 +6,8 @@ import LabelCard from "./LabelCard";
 import Card from "./Card";
 import StatusTable from "./StatusTable";
 import Summary from "./Summary";
+import AppointmentList from "./AppointmentList";
+import EmptyCard from "./EmptyCard";
 
 export {
   Alert,
@@ -16,4 +18,6 @@ export {
   Card,
   StatusTable,
   Summary,
+  AppointmentList,
+  EmptyCard,
 };

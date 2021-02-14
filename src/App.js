@@ -34,13 +34,13 @@ const useStyles = makeStyles({
     textDecoration: "none",
   },
   footer: {
-    marginTop: "2rem",
+    marginTop: "5rem",
     marginBottom: "2rem",
   },
   footerText: {
     // fontSize: ".8rem",
     textAlign: "center",
-    marginTop: "4rem",
+    marginTop: "5rem",
   },
 });
 

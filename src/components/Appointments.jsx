@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import Box from "@material-ui/core/Box";
 import Hidden from "@material-ui/core/Hidden";
-import { Card, LabelCard } from "./index";
+import { Card, AppointmentList, EmptyCard } from "./index";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +18,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default class Appointments extends React.Component {
   state = {
-    sites: [],
+    availableSites: [],
+    unavailableSites: [],
+    showUnavailable: false,
   };
 
   mapPersonToVars(props) {
@@ -34,7 +36,21 @@ export default class Appointments extends React.Component {
     };
   }
 
+  handleChange = (event) => {
+    const newShowUnavailableValue = !this.state.showUnavailable;
+
+    localStorage.setItem("showUnavailable", newShowUnavailableValue);
+
+    this.setState({
+      ...this.state,
+      showUnavailable: newShowUnavailableValue,
+    });
+  };
+
   componentDidMount() {
+    const showUnavailable = localStorage.getItem("showUnavailable") == "true";
+    this.setState({ showUnavailable });
+
     axios
       .get(
         `https://spreadsheets.google.com/feeds/cells/10l-N3bDVpJPH5IWc3Jak2jzWr0BRNax65jjxzAo_tLs/5/public/full?alt=json`
@@ -47,13 +63,6 @@ export default class Appointments extends React.Component {
           .filter((site) => site.isActive);
 
         const sortedSites = mappedSites.sort((a, b) => {
-          if (a.isAvailable) {
-            return -1;
-          }
-          if (b.isAvailable) {
-            return 1;
-          }
-
           if (a.lastAvailableAt > b.lastAvailableAt) {
             return -1;
           }
@@ -63,16 +72,33 @@ export default class Appointments extends React.Component {
           return 0;
         });
 
-        this.setState({ sites: mappedSites });
+        const availableSites = sortedSites.filter((site) => site.isAvailable);
+        const unavailableSites = sortedSites.filter(
+          (site) => !site.isAvailable
+        );
+
+        this.setState({
+          availableSites: availableSites,
+          unavailableSites: unavailableSites,
+          showUnavailable,
+        });
       });
   }
 
   render() {
+    const foundAvailability = this.state.availableSites.length > 0;
+
     return (
       <Box>
-        {this.state.sites.map((site, index) => (
-          <Card {...site} key={index} />
-        ))}
+        <AppointmentList sites={this.state.availableSites} />
+        <EmptyCard
+          foundAvailability={foundAvailability}
+          handleChange={this.handleChange}
+          showUnavailable={this.state.showUnavailable}
+        />
+        {this.state.showUnavailable && (
+          <AppointmentList sites={this.state.unavailableSites} />
+        )}
       </Box>
     );
   }

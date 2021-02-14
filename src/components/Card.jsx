@@ -56,8 +56,6 @@ export default function Card({
         justify: "space-between",
       };
 
-  console.log(appointments);
-
   return (
     <MaterialCard className={classes.card} variant="outlined">
       <CardContent className={classes.cardContent}>
