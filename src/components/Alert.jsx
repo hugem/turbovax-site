@@ -6,24 +6,31 @@ export default function Alert() {
   return (
     <Box my={5}>
       <MaterialAlert severity="info">
-        <b>Update (2/14 10:43AM):</b> TurboVax has paused its NYS bot. Go
-        directly to{" "}
+        <b>Update (2/15 9:38AM):</b>{" "}
+        <Link
+          target="_blank"
+          href="https://covid19.nychealthandhospitals.org/UnaffiliatedHealthCareWorkers"
+          rel="noreferrer"
+        >
+          NYC H+H
+        </Link>{" "}
+        bot is now back online.{" "}
         <Link
           target="_blank"
           href="https://am-i-eligible.covid19vaccine.health.ny.gov/"
           rel="noreferrer"
         >
-          the state's website
+          NYS Dept. of Health
         </Link>{" "}
-        to find availability. Pharmacy appointments remain reserved{" "}
+        bot remains offline. People{" "}
         <Link
           target="_blank"
           href="https://twitter.com/MarkLevineNYC/status/1360714450815352833"
           rel="noreferrer"
         >
-          for those aged 65+ only
-        </Link>
-        .
+          aged 65+
+        </Link>{" "}
+        can book appointments at pharmacies.
       </MaterialAlert>
     </Box>
   );

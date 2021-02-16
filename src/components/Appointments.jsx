@@ -3,16 +3,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import Box from "@material-ui/core/Box";
 import Hidden from "@material-ui/core/Hidden";
-import { Card, AppointmentList, EmptyCard } from "./index";
+import { Summary, AppointmentList, EmptyCard } from "./index";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-  },
-  paper: {
-    // padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
   },
 }));
 
@@ -21,6 +16,7 @@ export default class Appointments extends React.Component {
     availableSites: [],
     unavailableSites: [],
     showUnavailable: false,
+    lastUpdatedAt: null,
   };
 
   mapPersonToVars(props) {
@@ -28,6 +24,7 @@ export default class Appointments extends React.Component {
       siteName: props.site_name,
       portalName: props.portal_name,
       lastAvailableAt: props.last_available_at,
+      updatedAt: props.updated_at,
       url: props.url,
       appointments: props.appointment_times.split(";"),
       isAvailable: props.is_available,
@@ -53,7 +50,7 @@ export default class Appointments extends React.Component {
 
     axios
       .get(
-        `https://spreadsheets.google.com/feeds/cells/10l-N3bDVpJPH5IWc3Jak2jzWr0BRNax65jjxzAo_tLs/5/public/full?alt=json`
+        `https://spreadsheets.google.com/feeds/cells/1HzL02Oyax9U-aak9idadwOr6s7SoD1IXBunyiS2L8-8/4/public/full?alt=json`
       )
       .then((res) => {
         const jsonList = res.data.feed.entry;
@@ -77,10 +74,17 @@ export default class Appointments extends React.Component {
           (site) => !site.isAvailable
         );
 
+        const updatedAtArray = sortedSites.map((site) => site.updatedAt);
+
+        console.log(updatedAtArray);
+
+        const lastUpdatedAt = updatedAtArray.sort().reverse()[0];
+
         this.setState({
           availableSites: availableSites,
           unavailableSites: unavailableSites,
           showUnavailable,
+          lastUpdatedAt,
         });
       });
   }
@@ -89,17 +93,23 @@ export default class Appointments extends React.Component {
     const foundAvailability = this.state.availableSites.length > 0;
 
     return (
-      <Box>
-        <AppointmentList sites={this.state.availableSites} />
-        <EmptyCard
+      <div>
+        <Summary
+          lastUpdatedAt={this.state.lastUpdatedAt}
           foundAvailability={foundAvailability}
-          handleChange={this.handleChange}
-          showUnavailable={this.state.showUnavailable}
         />
-        {this.state.showUnavailable && (
-          <AppointmentList sites={this.state.unavailableSites} />
-        )}
-      </Box>
+        <Box>
+          <AppointmentList sites={this.state.availableSites} />
+          <EmptyCard
+            foundAvailability={foundAvailability}
+            handleChange={this.handleChange}
+            showUnavailable={this.state.showUnavailable}
+          />
+          {this.state.showUnavailable && (
+            <AppointmentList sites={this.state.unavailableSites} />
+          )}
+        </Box>
+      </div>
     );
   }
 }

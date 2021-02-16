@@ -6,6 +6,8 @@ import Disclaimer from "./pages/Disclaimer";
 import MaterialLink from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import { Header } from "./components/index";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
@@ -50,6 +52,17 @@ export default function App() {
       <Header />
       <Router>
         <Nav />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/disclaimer">
+            <Disclaimer />
+          </Route>
+        </Switch>
         <Footer />
       </Router>
     </div>
@@ -58,8 +71,14 @@ export default function App() {
 
 function Nav() {
   const classes = useStyles();
+  const theme = useTheme();
+
+  const style = useMediaQuery(theme.breakpoints.up("sm"))
+    ? { margin: "2rem 0" }
+    : { margin: "1rem 0" };
+
   return (
-    <nav>
+    <nav style={style}>
       <ul className={classes.nav}>
         <li className={classes.li}>
           <Link to="" className={classes.a}>
@@ -72,18 +91,6 @@ function Nav() {
           </Link>
         </li>
       </ul>
-
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/disclaimer">
-          <Disclaimer />
-        </Route>
-      </Switch>
     </nav>
   );
 }

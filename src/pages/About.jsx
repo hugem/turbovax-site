@@ -8,7 +8,11 @@ export default function About() {
     <div>
       <Typography>
         TurboVax is a{" "}
-        <Link target="_blank" href="https://twitter.com/turbovax">
+        <Link
+          target="_blank"
+          href="https://twitter.com/turbovax"
+          rel="noreferrer"
+        >
           Twitter bot (@turbovax)
         </Link>{" "}
         that tweets the latest NYC vaccine appointments. Appointments are also
@@ -42,7 +46,11 @@ export default function About() {
           We currently support 3 major government vaccine websites that handle
           reservations for 43 vaccine administration sites. Details for other
           administration sites can be found at{" "}
-          <Link href="https://vaccinefinder.nyc.gov/" target="_blank">
+          <Link
+            href="https://vaccinefinder.nyc.gov/"
+            target="_blank"
+            rel="noreferrer"
+          >
             vaccinefinder.nyc.gov
           </Link>
           .
@@ -61,6 +69,7 @@ export default function About() {
             <Link
               href="https://www.nytimes.com/article/nyc-vaccine-shot.html"
               target="_blank"
+              rel="noreferrer"
             >
               <em>New York Times</em>
             </Link>{" "}
@@ -68,6 +77,7 @@ export default function About() {
             <Link
               href="https://gothamist.com/news/new-york-city-vaccine-explainer"
               target="_blank"
+              rel="noreferrer"
             >
               Gothamist
             </Link>{" "}
@@ -123,12 +133,13 @@ export default function About() {
             <br></br>
             <Typography>
               <u>
-                <a
+                <Link
                   href="https://covid19.nychealthandhospitals.org/UnaffiliatedHealthCareWorkers"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   For the NYC H+H website
-                </a>
+                </Link>
               </u>
               : Fill out your data. To check availability, select
               <code>I, [First Name] [Last Name]</code> checkbox. If no
@@ -137,9 +148,13 @@ export default function About() {
             </Typography>
             <Typography>
               <u>
-                <a href="https://vax4nyc.nyc.gov/patient/s/" target="_blank">
+                <Link
+                  href="https://vax4nyc.nyc.gov/patient/s/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   For the NYC Vaccine Hub (Vax4NYC) website
-                </a>
+                </Link>
               </u>
               : Fill out your data until you are at Step 3 (Schedule An
               Appointments). If no availability, select a new date or enter a
@@ -160,7 +175,7 @@ export default function About() {
         </Box>
         <Box marginBottom={4}>
           <Typography>
-            <strong>How can I contribute?</strong>
+            <strong>Can I contribute to a Venmo, GoFundeMe or etc?</strong>
           </Typography>
           <Typography>
             We appreciate your offers of generosity but do not need the funding.
@@ -200,8 +215,10 @@ export default function About() {
         <h2 class="header-text">Contact Us</h2>
         <Typography>
           This project is maintained by{" "}
-          <Link href="https://www.hugema.com">Huge Ma</Link>, who can be reached
-          at <Link href="mailto:huge@turbovax.info">huge@turbovax.info</Link>
+          <Link href="https://www.hugema.com" rel="noreferrer">
+            Huge Ma
+          </Link>
+          , who can be reached at huge@turbovax.info.
         </Typography>
       </section>
       <section class="about-section" id="special-thanks">
