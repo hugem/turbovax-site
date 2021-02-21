@@ -131,7 +131,7 @@ export default function Card({
                 color="primary"
                 variant="outlined"
                 className={classes.chip}
-                label={`${count} appointments`}
+                label={`${count.toLocaleString()} appointments`}
               />
             )}
           </Grid>

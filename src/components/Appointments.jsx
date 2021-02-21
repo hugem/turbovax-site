@@ -77,8 +77,6 @@ export default class Appointments extends React.Component {
 
         const updatedAtArray = sortedSites.map((site) => site.updatedAt);
 
-        console.log(updatedAtArray);
-
         const lastUpdatedAt = updatedAtArray.sort().reverse()[0];
 
         this.setState({
