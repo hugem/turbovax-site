@@ -7,12 +7,24 @@ import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
+import Box from "@material-ui/core/Box";
 import Moment from "react-moment";
 import { useTheme } from "@material-ui/core/styles";
 
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
+  title: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.1rem",
+    },
+    fontSize: "1.2rem",
+  },
+  appointmentText: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.9rem",
+    },
+  },
   card: {
     marginBottom: "1rem",
   },
@@ -20,20 +32,23 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   chip: {
-    margin: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   },
   cardContent: {
     paddingBottom: "16px!important",
   },
   lastAvailableAtLabel: {
     lineHeight: "initial",
+    fontSize: ".75rem",
   },
   lastAvailableAtValue: {
-    fontSize: ".8rem",
+    fontSize: ".75rem",
   },
 }));
 
 export default function Card({
+  count,
   siteName,
   portalName,
   lastAvailableAt,
@@ -61,31 +76,11 @@ export default function Card({
       <CardContent className={classes.cardContent}>
         <Grid container spacing={2} display="flex">
           <Grid item xs={12} sm={6} className={classes.column}>
-            <Typography variant="h6" component="h3">
+            <Typography variant="h6" component="h3" className={classes.title}>
               {siteName}
             </Typography>
-            <Chip
-              size={"small"}
-              color="primary"
-              variant="outlined"
-              label={portalName}
-            />
-            <Chip
-              size={"small"}
-              color="primary"
-              variant="outlined"
-              className={classes.chip}
-              label={area}
-            />
           </Grid>
-          <Grid
-            item
-            container
-            spacing={1}
-            {...lastUpdatedClasses}
-            xs={12}
-            sm={3}
-          >
+          <Grid item container {...lastUpdatedClasses} xs={12} sm={3}>
             <Grid item>
               <Typography
                 variant="overline"
@@ -115,10 +110,37 @@ export default function Card({
               </Button>
             </Grid>
           </Hidden>
+          <Grid xs={12} item>
+            <Chip
+              size={"small"}
+              color="primary"
+              variant="outlined"
+              className={classes.chip}
+              label={portalName}
+            />
+            <Chip
+              size={"small"}
+              color="primary"
+              variant="outlined"
+              className={classes.chip}
+              label={area}
+            />
+            {isAvailable && (
+              <Chip
+                size={"small"}
+                color="primary"
+                variant="outlined"
+                className={classes.chip}
+                label={`${count} appointments`}
+              />
+            )}
+          </Grid>
           {isAvailable && (
             <Grid item>
               {appointments.map((appointment) => (
-                <Typography>{appointment}</Typography>
+                <Typography className={classes.appointmentText}>
+                  {appointment}
+                </Typography>
               ))}
             </Grid>
           )}

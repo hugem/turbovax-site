@@ -21,15 +21,16 @@ export default class Appointments extends React.Component {
 
   mapPersonToVars(props) {
     return {
-      siteName: props.site_name,
-      portalName: props.portal_name,
+      appointments: props.appointment_times.split(";"),
+      area: props.area,
+      count: props.appointment_count,
+      isActive: props.is_active,
+      isAvailable: props.is_available,
       lastAvailableAt: props.last_available_at,
+      portalName: props.portal_name,
+      siteName: props.site_name,
       updatedAt: props.updated_at,
       url: props.url,
-      appointments: props.appointment_times.split(";"),
-      isAvailable: props.is_available,
-      area: props.area,
-      isActive: props.is_active,
     };
   }
 

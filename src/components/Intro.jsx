@@ -11,7 +11,7 @@ export default function Intro() {
   return (
     <Box px={usePadding ? 3 : 0}>
       <Typography>
-        TurboVax finds appointments from 43 city and state-run vaccine sites in
+        TurboVax finds appointments from 45 city and state-run vaccine sites in
         the NYC area.
       </Typography>
       <ol>

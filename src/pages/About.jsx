@@ -43,9 +43,8 @@ export default function About() {
       <section class="about-section" id="supported-websites">
         <h2 class="header-text">Supported Websites</h2>
         <Typography>
-          We currently support 3 major government vaccine websites that handle
-          reservations for 43 vaccine administration sites. Details for other
-          administration sites can be found at{" "}
+          We currently support 3 major government vaccine websites. Details for
+          other administration sites can be found at{" "}
           <Link
             href="https://vaccinefinder.nyc.gov/"
             target="_blank"
@@ -197,9 +196,8 @@ export default function About() {
             <strong>Will you open source this?</strong>
           </Typography>
           <Typography>
-            The answer is currently no, because the code is not reusable. One
-            person cannot put something like this into the world without taking
-            tons of{" "}
+            The answer is no, because the code is not reusable. One person
+            cannot put something like this into the world without taking tons of{" "}
             <Link
               target="_blank"
               href="https://twitter.com/turbovax/status/1359508343908368385"
@@ -207,7 +205,7 @@ export default function About() {
             >
               shortcuts
             </Link>{" "}
-            that would be unintelligable to other engineers.
+            that would be unintelligible to other engineers.
           </Typography>
         </Box>
       </section>
