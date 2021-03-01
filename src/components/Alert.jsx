@@ -6,14 +6,16 @@ export default function Alert() {
   return (
     <Box my={5}>
       <MaterialAlert severity="info">
-        <b>Update (2/19 9:38AM):</b>{" "}
-        {/* <Link
+        <b>Update (3/1 12PM):</b> TurboVax is back online. Please take a moment
+        to educate yourself on{" "}
+        <Link
           target="_blank"
-          href="https://covid19.nychealthandhospitals.org/UnaffiliatedHealthCareWorkers"
+          href="https://twitter.com/turbovax/status/1365713333287079953"
           rel="noreferrer"
         >
-          NYC H+H
-        </Link>{" "} */}
+          anti-Asian hate
+        </Link>
+        {"."}
       </MaterialAlert>
     </Box>
   );

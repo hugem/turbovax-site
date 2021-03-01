@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div>
       <Intro />
-      {/* <Alert /> */}
+      <Alert />
       <Appointments />
     </div>
   );
