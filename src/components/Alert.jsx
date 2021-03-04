@@ -14,8 +14,8 @@ export default function Alert() {
           rel="noreferrer"
         >
           anti-Asian hate
-        </Link>
-        {"."}
+        </Link>{" "}
+        and what you can do to help end it.
       </MaterialAlert>
     </Box>
   );
