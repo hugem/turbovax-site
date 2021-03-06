@@ -7,8 +7,8 @@ import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
-import Box from "@material-ui/core/Box";
 import Moment from "react-moment";
+import Pluralize from "react-pluralize";
 import { useTheme } from "@material-ui/core/styles";
 
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -63,9 +63,15 @@ export default function Card({
   const bull = <span className={classes.bullet}>•</span>;
   const theme = useTheme();
 
-  const appointmentsWord = useMediaQuery(theme.breakpoints.up("sm"))
-    ? "appointments"
-    : "appts";
+  const appointmentWord = useMediaQuery(theme.breakpoints.up("sm"))
+    ? "appointment"
+    : "appt";
+  const pluralizedApptLabel = (
+    <span>
+      {count.toLocaleString()}{" "}
+      <Pluralize singular={appointmentWord} count={count} showCount={false} />
+    </span>
+  );
   const lastUpdatedClasses = useMediaQuery(theme.breakpoints.up("sm"))
     ? {
         direction: "column",
@@ -75,6 +81,8 @@ export default function Card({
     : {
         justify: "space-between",
       };
+
+  const lastAvailableWord = isAvailable ? "Checked" : "Available";
 
   return (
     <MaterialCard className={classes.card} variant="outlined">
@@ -114,7 +122,7 @@ export default function Card({
                   color="primary"
                   variant="outlined"
                   className={classes.chip}
-                  label={`${count.toLocaleString()} ${appointmentsWord}`}
+                  label={pluralizedApptLabel}
                 />
               )}
             </Grid>
@@ -153,7 +161,8 @@ export default function Card({
               </Grid>
               <Grid item>
                 <Typography className={classes.lastAvailableAt}>
-                  Available <Moment fromNow={true}>{lastAvailableAt}</Moment>
+                  {lastAvailableWord}{" "}
+                  <Moment fromNow={true}>{lastAvailableAt}</Moment>
                 </Typography>
               </Grid>
             </Grid>
@@ -183,7 +192,8 @@ export default function Card({
               </Grid>
               <Grid item>
                 <Typography className={classes.lastAvailableAt}>
-                  Available <Moment fromNow={true}>{lastAvailableAt}</Moment>
+                  {lastAvailableWord}{" "}
+                  <Moment fromNow={true}>{lastAvailableAt}</Moment>
                 </Typography>
               </Grid>
             </Grid>
