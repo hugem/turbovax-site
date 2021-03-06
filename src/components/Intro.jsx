@@ -11,7 +11,7 @@ export default function Intro() {
   return (
     <Box px={usePadding ? 3 : 0}>
       <Typography>
-        TurboVax finds appointments from 45 city and state-run vaccine sites in
+        TurboVax finds appointments from 53 city and state-run vaccine sites in
         the NYC area.
       </Typography>
       <ol>
@@ -36,7 +36,15 @@ export default function Intro() {
         </li>
       </ol>
       <Typography>
-        Availability for local clinics/pharmacies can be found at{" "}
+        Availability for local clinics/pharmacies can be found at CDC's{" "}
+        <Link
+          target="_blank"
+          href="https://vaccinefinder.org/"
+          rel="noreferrer"
+        >
+          VaccineFinder
+        </Link>{" "}
+        or{" "}
         <Link
           target="_blank"
           href="https://nycvaccinelist.com/"
@@ -44,8 +52,7 @@ export default function Intro() {
         >
           NYC Vaccine List
         </Link>
-        . If you found TurboVax to be helpful, please consider making a donation
-        to{" "}
+        . If you found TurboVax to be helpful, consider making a donation to{" "}
         <Link
           target="_blank"
           href="https://www.welcometochinatown.com/"

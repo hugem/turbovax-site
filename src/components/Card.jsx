@@ -7,8 +7,8 @@ import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
-import Box from "@material-ui/core/Box";
 import Moment from "react-moment";
+import Pluralize from "react-pluralize";
 import { useTheme } from "@material-ui/core/styles";
 
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -42,8 +42,10 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "initial",
     fontSize: ".75rem",
   },
-  lastAvailableAtValue: {
-    fontSize: ".75rem",
+  lastAvailableAt: {
+    marginTop: ".75rem",
+    fontSize: ".8rem",
+    textAlign: "center",
   },
 }));
 
@@ -61,6 +63,15 @@ export default function Card({
   const bull = <span className={classes.bullet}>•</span>;
   const theme = useTheme();
 
+  const appointmentWord = useMediaQuery(theme.breakpoints.up("sm"))
+    ? "appointment"
+    : "appt";
+  const pluralizedApptLabel = (
+    <span>
+      {count.toLocaleString()}{" "}
+      <Pluralize singular={appointmentWord} count={count} showCount={false} />
+    </span>
+  );
   const lastUpdatedClasses = useMediaQuery(theme.breakpoints.up("sm"))
     ? {
         direction: "column",
@@ -71,92 +82,120 @@ export default function Card({
         justify: "space-between",
       };
 
+  const lastAvailableWord = isAvailable ? "Checked" : "Available";
+
   return (
     <MaterialCard className={classes.card} variant="outlined">
       <CardContent className={classes.cardContent}>
-        <Grid container spacing={2} display="flex">
-          <Grid item xs={12} sm={6} className={classes.column}>
-            <Typography variant="h6" component="h3" className={classes.title}>
-              {siteName}
-            </Typography>
-          </Grid>
-          <Grid item container {...lastUpdatedClasses} xs={12} sm={3}>
-            <Grid item>
-              <Typography
-                variant="overline"
-                className={classes.lastAvailableAtLabel}
-              >
-                Last available
+        <Grid container spacing={1} display="flex">
+          <Grid
+            container
+            item
+            spacing={2}
+            xs={12}
+            sm={9}
+            className={classes.column}
+          >
+            <Grid xs={12} item>
+              <Typography variant="h6" component="h3" className={classes.title}>
+                {siteName}
               </Typography>
             </Grid>
-            <Grid item>
-              <Typography className={classes.lastAvailableAtValue}>
-                <Moment fromNow={true}>{lastAvailableAt}</Moment>
-              </Typography>
-            </Grid>
-          </Grid>
-          <Hidden xsDown>
-            <Grid item xs={12} sm={3}>
-              <Button
-                size="medium"
-                variant="contained"
-                color="primary"
-                className={classes.reserveButton}
-                disabled={!isAvailable}
-                href={url}
-                target={"_blank"}
-              >
-                {isAvailable ? "Reserve" : "No Availability"}
-              </Button>
-            </Grid>
-          </Hidden>
-          <Grid xs={12} item>
-            <Chip
-              size={"small"}
-              color="primary"
-              variant="outlined"
-              className={classes.chip}
-              label={portalName}
-            />
-            <Chip
-              size={"small"}
-              color="primary"
-              variant="outlined"
-              className={classes.chip}
-              label={area}
-            />
-            {isAvailable && (
+            <Grid xs={12} item>
               <Chip
                 size={"small"}
                 color="primary"
                 variant="outlined"
                 className={classes.chip}
-                label={`${count.toLocaleString()} appointments`}
+                label={portalName}
               />
+              <Chip
+                size={"small"}
+                color="primary"
+                variant="outlined"
+                className={classes.chip}
+                label={area}
+              />
+              {isAvailable && (
+                <Chip
+                  size={"small"}
+                  color="primary"
+                  variant="outlined"
+                  className={classes.chip}
+                  label={pluralizedApptLabel}
+                />
+              )}
+            </Grid>
+            {isAvailable && (
+              <Grid item xs={12}>
+                {appointments.map((appointment) => (
+                  <Typography className={classes.appointmentText}>
+                    {appointment}
+                  </Typography>
+                ))}
+              </Grid>
             )}
           </Grid>
-          {isAvailable && (
-            <Grid item>
-              {appointments.map((appointment) => (
-                <Typography className={classes.appointmentText}>
-                  {appointment}
+          <Hidden xsDown>
+            <Grid
+              spacing={0}
+              container
+              item
+              xs={12}
+              sm={3}
+              direction="column"
+              justify="flex-start"
+            >
+              <Grid item>
+                <Button
+                  size="medium"
+                  variant="contained"
+                  color="primary"
+                  className={classes.reserveButton}
+                  disabled={!isAvailable}
+                  href={url}
+                  target={"_blank"}
+                >
+                  {isAvailable ? "Reserve" : "No Availability"}
+                </Button>
+              </Grid>
+              <Grid item>
+                <Typography className={classes.lastAvailableAt}>
+                  {lastAvailableWord}{" "}
+                  <Moment fromNow={true}>{lastAvailableAt}</Moment>
                 </Typography>
-              ))}
+              </Grid>
             </Grid>
-          )}
+          </Hidden>
           <Hidden smUp>
-            <Grid item xs={12} sm={3}>
-              <Button
-                size="medium"
-                variant="contained"
-                color="primary"
-                className={classes.reserveButton}
-                disabled={!isAvailable}
-                href={url}
-                target={"_blank"}
-              >
-                {isAvailable ? "Reserve" : "No Availability"}
-              </Button>
+            <Grid
+              spacing={0}
+              container
+              item
+              xs={12}
+              sm={3}
+              direction="column"
+              justify="flex-start"
+            >
+              <Grid item>
+                <Button
+                  size="medium"
+                  variant="contained"
+                  color="primary"
+                  className={classes.reserveButton}
+                  disabled={!isAvailable}
+                  href={url}
+                  target={"_blank"}
+                >
+                  {isAvailable ? "Reserve" : "No Availability"}
+                </Button>
+              </Grid>
+              <Grid item>
+                <Typography className={classes.lastAvailableAt}>
+                  {lastAvailableWord}{" "}
+                  <Moment fromNow={true}>{lastAvailableAt}</Moment>
+                </Typography>
+              </Grid>
             </Grid>
           </Hidden>
         </Grid>

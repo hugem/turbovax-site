@@ -5,9 +5,12 @@ import About from "./pages/About";
 import Disclaimer from "./pages/Disclaimer";
 import MaterialLink from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 import { Header } from "./components/index";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+
+import logo from "./images/logo.png";
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
@@ -20,7 +23,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   container: {
     maxWidth: "800px",
     padding: "1rem",
@@ -42,16 +45,22 @@ const useStyles = makeStyles({
     marginTop: "5rem",
     marginBottom: "2rem",
   },
-});
+  logo: {
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: "150px",
+    },
+    maxWidth: "250px",
+    width: "100%",
+  },
+}));
 
 export default function App() {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
-      <Header />
       <Router>
-        <Nav />
+        <Header />
         <Switch>
           <Route exact path="/">
             <Home />
@@ -69,31 +78,38 @@ export default function App() {
   );
 }
 
-function Nav() {
-  const classes = useStyles();
-  const theme = useTheme();
+// function Nav() {
+//   const classes = useStyles();
+//   const theme = useTheme();
 
-  const style = useMediaQuery(theme.breakpoints.up("sm"))
-    ? { margin: "2rem 0" }
-    : { margin: "1rem 0" };
+//   const style = useMediaQuery(theme.breakpoints.up("sm"))
+//     ? { margin: "2rem 0" }
+//     : { margin: "1rem 0" };
 
-  return (
-    <nav style={style}>
-      <ul className={classes.nav}>
-        <li className={classes.li}>
-          <Link to="" className={classes.a}>
-            <MaterialLink>Home</MaterialLink>
-          </Link>
-        </li>
-        <li className={classes.li}>
-          <Link to="/about" className={classes.a}>
-            <MaterialLink>About</MaterialLink>
-          </Link>
-        </li>
-      </ul>
-    </nav>
-  );
-}
+//   return (
+//     <header>
+//       <Box align="center">
+//         <Link to="/about">
+//           <img class={classes.logo} src={logo} alt="TurboVax logo" />
+//         </Link>
+//       </Box>
+//       <nav style={style}>
+//         <ul className={classes.nav}>
+//           <li className={classes.li}>
+//             <Link to="" className={classes.a}>
+//               <MaterialLink>Home</MaterialLink>
+//             </Link>
+//           </li>
+//           <li className={classes.li}>
+//             <Link to="/about" className={classes.a}>
+//               <MaterialLink>About</MaterialLink>
+//             </Link>
+//           </li>
+//         </ul>
+//       </nav>
+//     </header>
+//   );
+// }
 
 function Footer() {
   const classes = useStyles();

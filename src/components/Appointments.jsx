@@ -51,7 +51,7 @@ export default class Appointments extends React.Component {
 
     axios
       .get(
-        `https://spreadsheets.google.com/feeds/cells/1HzL02Oyax9U-aak9idadwOr6s7SoD1IXBunyiS2L8-8/4/public/full?alt=json`
+        `https://spreadsheets.google.com/feeds/cells/1NNZJWI7BYlajdBcqkEpOXXq6EZZyMd-zSIGKHNgS99w/4/public/full?alt=json`
       )
       .then((res) => {
         const jsonList = res.data.feed.entry;
@@ -78,6 +78,12 @@ export default class Appointments extends React.Component {
         const updatedAtArray = sortedSites.map((site) => site.updatedAt);
 
         const lastUpdatedAt = updatedAtArray.sort().reverse()[0];
+
+        // unavailableSites.forEach(function(site) {
+        //   if (site.name === 'Taft High School') {
+        //     console.log(site.siteName);
+        //   }
+        // });
 
         this.setState({
           availableSites: availableSites,

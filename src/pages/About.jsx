@@ -174,7 +174,7 @@ export default function About() {
         </Box>
         <Box marginBottom={4}>
           <Typography>
-            <strong>Can I contribute to a Venmo, GoFundeMe or etc?</strong>
+            <strong>Can I contribute to a Venmo, GoFundMe or etc?</strong>
           </Typography>
           <Typography>
             We appreciate your offers of generosity but do not need the funding.
@@ -222,8 +222,8 @@ export default function About() {
       <section class="about-section" id="special-thanks">
         <h2 class="header-text">Special Thanks</h2>
         <Typography>
-          Thanks to Kelley coming up with the name. Thanks to Yu who fed me (and
-          the cat) while I was heads-down on this for an entire weekend!
+          Thanks to Kelley for coming up with the name. Thanks to Yu who fed me
+          (and the cat) while I was heads-down on this for an entire weekend!
         </Typography>
       </section>
     </div>
