@@ -21,9 +21,9 @@ const rows = [
   createData(
     "NYC Vaccine Hub/Vax4NYC",
     "https://vax4nyc.nyc.gov/patient/s/",
-    24,
+    31,
     "Active",
-    "Feb 26"
+    "Mar 9"
   ),
   createData(
     "NYC Health and Hospitals",
