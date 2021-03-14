@@ -79,12 +79,6 @@ export default class Appointments extends React.Component {
 
         const lastUpdatedAt = updatedAtArray.sort().reverse()[0];
 
-        // unavailableSites.forEach(function(site) {
-        //   if (site.name === 'Taft High School') {
-        //     console.log(site.siteName);
-        //   }
-        // });
-
         this.setState({
           availableSites: availableSites,
           unavailableSites: unavailableSites,
