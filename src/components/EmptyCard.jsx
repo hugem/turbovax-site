@@ -35,6 +35,7 @@ export default function EmptyCard({
   foundAvailability,
   showUnavailable,
   handleChange,
+  unavailableCount,
 }) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
@@ -57,7 +58,7 @@ export default function EmptyCard({
                 color="primary"
               />
             }
-            label="Show unavailable sites"
+            label={`Show ${unavailableCount} unavailable sites`}
           />
         </Box>
       </CardContent>

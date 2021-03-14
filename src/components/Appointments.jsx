@@ -101,6 +101,7 @@ export default class Appointments extends React.Component {
           <AppointmentList sites={this.state.availableSites} />
           <EmptyCard
             foundAvailability={foundAvailability}
+            unavailableCount={this.state.unavailableSites.length}
             handleChange={this.handleChange}
             showUnavailable={this.state.showUnavailable}
           />

@@ -1,5 +1,5 @@
 import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
+import Box from "@material-ui/core/Box";
 import Link from "@material-ui/core/Link";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -17,7 +17,7 @@ export default function Intro() {
   const theme = useTheme();
 
   return (
-    <Container disableGutters={true} style={{ maxWidth: "700px" }}>
+    <Box style={{ maxWidth: "700px" }} my={5} mx="auto">
       <Typography>
         TurboVax finds appointments from government-run vaccine sites in the NYC
         area.
@@ -85,6 +85,6 @@ export default function Intro() {
         </Link>
         .
       </Typography>
-    </Container>
+    </Box>
   );
 }

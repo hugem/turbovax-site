@@ -24,9 +24,9 @@ export default function Summary({ lastUpdatedAt, foundAvailability }) {
           <Grid item xs={12} sm={6}>
             <Box p={2}>
               <Typography>
-                <b>Updated at: </b>
+                <b>Updated: </b>
                 {lastUpdatedAt ? (
-                  <Moment local format="MMM D, h:mmA">
+                  <Moment local calendar>
                     {lastUpdatedAt}
                   </Moment>
                 ) : (
