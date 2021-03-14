@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Faq from "./pages/Faq";
 import Disclaimer from "./pages/Disclaimer";
 import MaterialLink from "@material-ui/core/Link";
 import Container from "@material-ui/core/Container";
@@ -43,7 +44,7 @@ export default function App() {
     <div>
       <ThemeProvider theme={THEME}>
         <Router>
-          <Box mb={4}>
+          <Box mb={5}>
             <Header />
           </Box>
           <Container maxWidth="md">
@@ -52,10 +53,13 @@ export default function App() {
                 <Home />
               </Route>
               <Route path="/about">
-                <About />
+                <About pageName="About" />
               </Route>
               <Route path="/disclaimer">
                 <Disclaimer />
+              </Route>
+              <Route path="/faq">
+                <Faq pageName="Frequently Asked Questions" />
               </Route>
             </Switch>
           </Container>

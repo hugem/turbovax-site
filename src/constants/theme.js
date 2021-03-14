@@ -10,4 +10,9 @@ export const THEME = createMuiTheme({
       xl: 1920,
     },
   },
+  typography: {
+    listItem: {
+      lineHeight: "5rem",
+    },
+  },
 });

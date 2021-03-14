@@ -52,15 +52,3 @@ export default function Summary({ lastUpdatedAt, foundAvailability }) {
     </Box>
   );
 }
-// }
-
-// function StyledSummary(props) {
-//   const theme = useTheme();
-//   const hasAvailabilityClasses = useMediaQuery(theme.breakpoints.up("sm"))
-//     ? {}
-//     : { borderTop: 1, borderColor: "rgba(0, 0, 0, 0.12)" };
-
-//   return <Summary hasAvailabilityClasses={hasAvailabilityClasses} {...props} />;
-// }
-
-// export default StyledSummary;
