@@ -26,7 +26,9 @@ export default function Summary({ lastUpdatedAt, foundAvailability }) {
               <Typography>
                 <b>Updated at: </b>
                 {lastUpdatedAt ? (
-                  <Moment format="MMM D, h:mmA">{lastUpdatedAt}</Moment>
+                  <Moment local format="MMM D, h:mmA">
+                    {lastUpdatedAt}
+                  </Moment>
                 ) : (
                   ""
                 )}

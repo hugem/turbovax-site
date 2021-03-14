@@ -26,10 +26,10 @@ export default class Appointments extends React.Component {
       count: props.appointment_count,
       isActive: props.is_active,
       isAvailable: props.is_available,
-      lastAvailableAt: props.last_available_at,
+      lastAvailableAt: `${props.last_available_at} -400`,
       portalName: props.portal_name,
       siteName: props.site_name,
-      updatedAt: props.updated_at,
+      updatedAt: `${props.updated_at} -400`,
       url: props.url,
     };
   }
