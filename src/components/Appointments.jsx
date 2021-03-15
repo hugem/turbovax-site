@@ -51,7 +51,7 @@ export default class Appointments extends React.Component {
 
     axios
       .get(
-        `https://spreadsheets.google.com/feeds/cells/1NNZJWI7BYlajdBcqkEpOXXq6EZZyMd-zSIGKHNgS99w/4/public/full?alt=json`
+        `https://spreadsheets.google.com/feeds/cells/1ORaOxzA1hKSd7w-iNOj6uS2MaG01l6ff1bHQ0dt2MIA/4/public/full?alt=json`
       )
       .then((res) => {
         const jsonList = res.data.feed.entry;
