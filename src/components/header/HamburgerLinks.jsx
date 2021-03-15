@@ -43,8 +43,8 @@ export default function HamburgerMenu() {
         <Divider />
         <ListItemLink to="/faq" primary="FAQ" />
         <Divider />
-        <ListItemLink to="/donate" primary="Donate" />
-        <Divider />
+        {/* <ListItemLink to="/donate" primary="Donate" />
+        <Divider /> */}
       </List>
     </div>
   );

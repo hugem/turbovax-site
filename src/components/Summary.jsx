@@ -4,14 +4,20 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
-import axios from "axios";
 import Moment from "react-moment";
-import { useTheme } from "@material-ui/core/styles";
+import { useTheme, makeStyles } from "@material-ui/core/styles";
 
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
+const useStyles = makeStyles((theme) => ({
+  strong: {
+    fontWeight: "500",
+    // textDecoration: 'underline',
+  },
+}));
+
 export default function Summary({ lastUpdatedAt, foundAvailability }) {
-  // const classes = useStyles();
+  const classes = useStyles();
   const theme = useTheme();
   const hasAvailabilityClasses = useMediaQuery(theme.breakpoints.up("sm"))
     ? {}
@@ -24,7 +30,7 @@ export default function Summary({ lastUpdatedAt, foundAvailability }) {
           <Grid item xs={12} sm={6}>
             <Box p={2}>
               <Typography>
-                <b>Updated: </b>
+                <strong className={classes.strong}>Updated</strong>:{" "}
                 {lastUpdatedAt ? (
                   <Moment local calendar>
                     {lastUpdatedAt}
@@ -38,7 +44,7 @@ export default function Summary({ lastUpdatedAt, foundAvailability }) {
           <Grid item xs={12} sm={6}>
             <Box p={2} {...hasAvailabilityClasses}>
               <Typography>
-                <b>Appointments: </b>
+                <strong className={classes.strong}>Appointments</strong>:{" "}
                 {foundAvailability === null
                   ? ""
                   : foundAvailability === true

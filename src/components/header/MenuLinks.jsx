@@ -20,7 +20,7 @@ export default function MenuLinks(props) {
     <nav aria-label="dropdown nav menu">
       <MenuButton text="About" to="/about" />
       <MenuButton text="FAQ" to="/faq" />
-      <MenuButton text="Donate" to="/donate" />
+      {/* <MenuButton text="Donate" to="/donate" /> */}
     </nav>
   );
 }

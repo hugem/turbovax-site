@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Hidden from "@material-ui/core/Hidden";
 import Divider from "@material-ui/core/Divider";
 import Container from "@material-ui/core/Container";
+import Box from "@material-ui/core/Box";
 import MenuIcon from "@material-ui/icons/Menu";
 
 import { BrowserRouter as Router, Link } from "react-router-dom";
@@ -21,14 +22,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  // menuButton: {
-  //   marginRight: theme.spacing(2),
-  // },
   title: {
     flexGrow: 1,
   },
   a: {
-    //   // textDecoration: "none",
     all: "unset",
   },
   logo: {
@@ -43,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Header() {
   const theme = useTheme();
   const classes = useStyles();
+  const logoPadding = useMediaQuery(theme.breakpoints.up("sm")) ? 2 : 0;
 
   const [menuEnabled, setMenuEnabled] = React.useState(null);
 
@@ -55,9 +53,17 @@ export default function Header() {
       <Container maxWidth="md">
         <AppBar position="static" color="inherit" elevation={0}>
           <Toolbar display="flex" disableGutters={true}>
-            <Link to="" className={classes.title}>
-              <img className={classes.logo} src={logo} alt="TurboVax logo" />
-            </Link>
+            <Box className={classes.title}>
+              <Box py={logoPadding}>
+                <Link to="">
+                  <img
+                    className={classes.logo}
+                    src={logo}
+                    alt="TurboVax logo"
+                  />
+                </Link>
+              </Box>
+            </Box>
             <Hidden only="xs">
               <MenuLinks />
             </Hidden>

@@ -86,9 +86,8 @@ const content = [
         >
           Welcome to Chinatown
         </Link>
-        , a grassroots initiative to support Chinatown businesses and amplify
-        community voices in order to preserve one of New York City's most
-        vibrant neighborhoods.
+        , a grassroots initiative to support Chinatown businesses and help
+        preserve one of New York City's most vibrant neighborhoods.
       </Typography>
     ),
   },
@@ -115,8 +114,10 @@ function QuestionContent() {
     const idString = createIdString(contentObject.question);
 
     return (
-      <Box id={idString} marginBottom={4}>
-        <Typography variant="h6"> {contentObject.question} </Typography>
+      <Box id={idString} my={6}>
+        <Box marginBottom={1}>
+          <Typography variant="h5"> {contentObject.question} </Typography>
+        </Box>
         {contentObject.answer}
       </Box>
     );

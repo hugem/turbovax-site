@@ -1,7 +1,19 @@
+import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import { asPage } from "./../helpers/hoc";
 import StatusTable from "./../components/StatusTable";
+
+function Section(props) {
+  return (
+    <Box my={6}>
+      <Box mb={2}>
+        <Typography variant="h4">{props.title}</Typography>
+      </Box>
+      <section>{props.children}</section>
+    </Box>
+  );
+}
 
 function About() {
   return (
@@ -18,8 +30,7 @@ function About() {
         that tweets the latest NYC vaccine appointments. Appointments are also
         published to this page in real-time.
       </Typography>
-      <section class="about-section" id="supported-websites">
-        <h2 class="header-text">Supported Websites</h2>
+      <Section title="Supported Websites">
         <Typography>
           We currently support 3 major government vaccine websites. Details for
           other administration sites can be found at{" "}
@@ -34,9 +45,8 @@ function About() {
         </Typography>
         <br></br>
         <StatusTable />
-      </section>
-      <section class="about-section" id="contact-us">
-        <h2 class="header-text">Contact Us</h2>
+      </Section>
+      <Section title="Contact Us">
         <Typography>
           This project is maintained by{" "}
           <Link href="https://www.hugema.com" rel="noreferrer">
@@ -48,14 +58,13 @@ function About() {
           </Link>
           .
         </Typography>
-      </section>
-      <section class="about-section" id="special-thanks">
-        <h2 class="header-text">Special Thanks</h2>
+      </Section>
+      <Section title="Special Thanks">
         <Typography>
           Thanks to Kelley for coming up with the name. Thanks to Yu who fed me
           (and the cat) while I was heads-down on this for an entire weekend!
         </Typography>
-      </section>
+      </Section>
     </div>
   );
 }

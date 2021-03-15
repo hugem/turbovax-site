@@ -4,15 +4,17 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Faq from "./pages/Faq";
 import Disclaimer from "./pages/Disclaimer";
+import { Header } from "./components/index";
+import { THEME } from "./constants/theme";
+
 import MaterialLink from "@material-ui/core/Link";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import { Header } from "./components/index";
 import { ThemeProvider } from "@material-ui/core/styles";
-
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
-import { THEME } from "./constants/theme";
 
 const useStyles = makeStyles((theme) => ({
   nav: {
@@ -40,11 +42,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function App() {
+  const theme = useTheme();
+  const navMargin = useMediaQuery(theme.breakpoints.up("sm")) ? 5 : 3;
+
   return (
     <div>
       <ThemeProvider theme={THEME}>
         <Router>
-          <Box mb={5}>
+          <Box mb={navMargin}>
             <Header />
           </Box>
           <Container maxWidth="md">

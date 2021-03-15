@@ -8,8 +8,8 @@ export function asPage(WrappedComponent) {
     render() {
       return (
         <div>
-          <Box mb={5}>
-            <Typography component="h1" variant="h4">
+          <Box mb={8}>
+            <Typography align="center" component="h2" variant="h3">
               {this.props.pageName}
             </Typography>
           </Box>
