@@ -162,7 +162,9 @@ export default function Card({
               <Grid item>
                 <Typography className={classes.lastAvailableAt}>
                   {lastAvailableWord}{" "}
-                  <Moment fromNow={true}>{lastAvailableAt}</Moment>
+                  <Moment parse="YYYY-MM-DD HH:mm" fromNow={true}>
+                    {lastAvailableAt}
+                  </Moment>
                 </Typography>
               </Grid>
             </Grid>
