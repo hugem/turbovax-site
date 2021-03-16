@@ -48,6 +48,10 @@ export default function Header() {
     setMenuEnabled(!Boolean(menuEnabled));
   };
 
+  const hideHamburger = (event) => {
+    setMenuEnabled(false);
+  };
+
   return (
     <header className={classes.root}>
       <Container maxWidth="md">
@@ -60,6 +64,7 @@ export default function Header() {
                     className={classes.logo}
                     src={logo}
                     alt="TurboVax logo"
+                    onClick={hideHamburger}
                   />
                 </Link>
               </Box>
@@ -83,7 +88,7 @@ export default function Header() {
       </Container>
       <Hidden smUp>
         <Divider />
-        {menuEnabled && <HamburgerMenu />}
+        {menuEnabled && <HamburgerMenu onClick={hideHamburger} />}
       </Hidden>
     </header>
   );

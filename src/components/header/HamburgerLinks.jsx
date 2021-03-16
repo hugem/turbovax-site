@@ -25,13 +25,17 @@ function ListItemLink(props) {
   return (
     <li>
       <ListItem button component={CustomLink}>
-        <ListItemText className={classes.listItemText} primary={primary} />
+        <ListItemText
+          className={classes.listItemText}
+          primary={primary}
+          onClick={props.onClick}
+        />
       </ListItem>
     </li>
   );
 }
 
-export default function HamburgerMenu() {
+export default function HamburgerMenu(props) {
   return (
     <div>
       <List
@@ -39,9 +43,9 @@ export default function HamburgerMenu() {
         aria-label="dropdown nav menu"
         disablePadding={true}
       >
-        <ListItemLink to="/about" primary="About" />
+        <ListItemLink onClick={props.onClick} to="/about" primary="About" />
         <Divider />
-        <ListItemLink to="/faq" primary="FAQ" />
+        <ListItemLink onClick={props.onClick} to="/faq" primary="FAQ" />
         <Divider />
         {/* <ListItemLink to="/donate" primary="Donate" />
         <Divider /> */}
