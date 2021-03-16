@@ -2,33 +2,21 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Faq from "./pages/Faq";
 import Disclaimer from "./pages/Disclaimer";
+import { Header } from "./components/index";
+import { THEME } from "./constants/theme";
+
 import MaterialLink from "@material-ui/core/Link";
+import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import { Header } from "./components/index";
-import { useTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-
-import logo from "./images/logo.png";
-
-// This site has 3 pages, all of which are rendered
-// dynamically in the browser (not server rendered).
-//
-// Although the page does not ever refresh, notice how
-// React Router keeps the URL up to date as you navigate
-// through the site. This preserves the browser history,
-// making sure things like the back button and bookmarks
-// work properly.
-
+import { useTheme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    maxWidth: "800px",
-    padding: "1rem",
-    margin: "0 auto",
-  },
   nav: {
     textAlign: "center",
     padding: 0,
@@ -38,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
     margin: "1rem",
   },
   a: {
-    // textDecoration: "none",
     all: "unset",
   },
   footer: {
@@ -55,61 +42,38 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function App() {
-  const classes = useStyles();
+  const theme = useTheme();
+  const navMargin = useMediaQuery(theme.breakpoints.up("sm")) ? 5 : 3;
 
   return (
-    <div className={classes.container}>
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/disclaimer">
-            <Disclaimer />
-          </Route>
-        </Switch>
-        <Footer />
-      </Router>
+    <div>
+      <ThemeProvider theme={THEME}>
+        <Router>
+          <Box mb={navMargin}>
+            <Header />
+          </Box>
+          <Container maxWidth="md">
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route path="/about">
+                <About pageName="About" />
+              </Route>
+              <Route path="/disclaimer">
+                <Disclaimer />
+              </Route>
+              <Route path="/faq">
+                <Faq pageName="Frequently Asked Questions" />
+              </Route>
+            </Switch>
+          </Container>
+          <Footer />
+        </Router>
+      </ThemeProvider>
     </div>
   );
 }
-
-// function Nav() {
-//   const classes = useStyles();
-//   const theme = useTheme();
-
-//   const style = useMediaQuery(theme.breakpoints.up("sm"))
-//     ? { margin: "2rem 0" }
-//     : { margin: "1rem 0" };
-
-//   return (
-//     <header>
-//       <Box align="center">
-//         <Link to="/about">
-//           <img class={classes.logo} src={logo} alt="TurboVax logo" />
-//         </Link>
-//       </Box>
-//       <nav style={style}>
-//         <ul className={classes.nav}>
-//           <li className={classes.li}>
-//             <Link to="" className={classes.a}>
-//               <MaterialLink>Home</MaterialLink>
-//             </Link>
-//           </li>
-//           <li className={classes.li}>
-//             <Link to="/about" className={classes.a}>
-//               <MaterialLink>About</MaterialLink>
-//             </Link>
-//           </li>
-//         </ul>
-//       </nav>
-//     </header>
-//   );
-// }
 
 function Footer() {
   const classes = useStyles();

@@ -4,36 +4,59 @@ import Link from "@material-ui/core/Link";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
+function ListItem(props) {
+  const style = { marginBottom: ".25rem" };
+  return (
+    <li style={style}>
+      <Typography>{props.children}</Typography>
+    </li>
+  );
+}
+
 export default function Intro() {
   const theme = useTheme();
-  const usePadding = useMediaQuery(theme.breakpoints.up("sm"));
 
   return (
-    <Box px={usePadding ? 3 : 0}>
+    <Box style={{ maxWidth: "700px" }} mBottom={5} mx="auto">
       <Typography>
-        TurboVax finds appointments from 60 city and state-run vaccine sites in
-        the NYC area.
+        TurboVax finds appointments from government-run vaccine sites in the NYC
+        area.
       </Typography>
       <ol>
-        <li>
-          <Typography>
-            Follow our Twitter (
-            <Link
-              target="_blank"
-              href="https://twitter.com/turbovax"
-              rel="noreferrer"
-            >
-              @turbovax
-            </Link>
-            ) to be instantly notified when appointments open up.
-          </Typography>
-        </li>
-        <li>
-          <Typography>
-            Refresh this page often. Appointments are published to this page in
-            real-time.
-          </Typography>
-        </li>
+        <ListItem>
+          Follow our Twitter (
+          <Link
+            target="_blank"
+            href="https://twitter.com/turbovax"
+            rel="noreferrer"
+          >
+            @turbovax
+          </Link>
+          ) to be instantly notified when appointments open up.
+        </ListItem>
+        <ListItem>
+          Refresh this page often. Appointments are published to this page in
+          real-time.
+        </ListItem>
+        <ListItem>
+          Educate yourself on{" "}
+          <Link
+            target="_blank"
+            href="https://www.nytimes.com/2021/02/26/nyregion/asian-hate-crimes-attacks-ny.html"
+            rel="noreferrer"
+          >
+            rising Asian Hate
+          </Link>{" "}
+          and how you can{" "}
+          <Link
+            target="_blank"
+            href="https://stopaapihate.org/actnow/"
+            rel="noreferrer"
+          >
+            help end it
+          </Link>
+          .
+        </ListItem>
       </ol>
       <Typography>
         Availability for local clinics/pharmacies can be found at CDC's{" "}

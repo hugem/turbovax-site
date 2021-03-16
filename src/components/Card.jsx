@@ -5,6 +5,8 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
+import Box from "@material-ui/core/Box";
+import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
 import Moment from "react-moment";
@@ -14,11 +16,8 @@ import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
-  title: {
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "1.1rem",
-    },
-    fontSize: "1.2rem",
+  details: {
+    fontSize: ".85em",
   },
   appointmentText: {
     [theme.breakpoints.down("sm")]: {
@@ -31,21 +30,24 @@ const useStyles = makeStyles((theme) => ({
   reserveButton: {
     width: "100%",
   },
-  chip: {
-    marginRight: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
   cardContent: {
     paddingBottom: "16px!important",
   },
-  lastAvailableAtLabel: {
-    lineHeight: "initial",
-    fontSize: ".75rem",
+  location: {
+    marginLeft: "8px",
   },
-  lastAvailableAt: {
-    marginTop: ".75rem",
-    fontSize: ".8rem",
-    textAlign: "center",
+  topComponent: {
+    [theme.breakpoints.down("xs")]: {
+      paddingLeft: "0!important",
+      paddingRight: "0!important",
+    },
+  },
+  titleRow: {
+    display: "flex",
+    alignItems: "center",
+    [theme.breakpoints.down("xs")]: {
+      justifyContent: "space-between",
+    },
   },
 }));
 
@@ -66,28 +68,24 @@ export default function Card({
   const appointmentWord = useMediaQuery(theme.breakpoints.up("sm"))
     ? "appointment"
     : "appt";
+  const countToUse = isAvailable ? count : 0;
   const pluralizedApptLabel = (
     <span>
-      {count.toLocaleString()}{" "}
-      <Pluralize singular={appointmentWord} count={count} showCount={false} />
+      {countToUse.toLocaleString()}{" "}
+      <Pluralize
+        singular={appointmentWord}
+        count={countToUse}
+        showCount={false}
+      />
     </span>
   );
-  const lastUpdatedClasses = useMediaQuery(theme.breakpoints.up("sm"))
-    ? {
-        direction: "column",
-        justify: "flex-start",
-        alignItems: "flex-start",
-      }
-    : {
-        justify: "space-between",
-      };
 
-  const lastAvailableWord = isAvailable ? "Checked" : "Available";
+  const lastAvailableWord = isAvailable ? "checked" : "available";
 
   return (
     <MaterialCard className={classes.card} variant="outlined">
       <CardContent className={classes.cardContent}>
-        <Grid container spacing={1} display="flex">
+        <Grid justify="space-around" container spacing={2} display="flex">
           <Grid
             container
             item
@@ -96,38 +94,32 @@ export default function Card({
             sm={9}
             className={classes.column}
           >
-            <Grid xs={12} item>
-              <Typography variant="h6" component="h3" className={classes.title}>
-                {siteName}
-              </Typography>
-            </Grid>
-            <Grid xs={12} item>
-              <Chip
-                size={"small"}
-                color="primary"
-                variant="outlined"
-                className={classes.chip}
-                label={portalName}
-              />
-              <Chip
-                size={"small"}
-                color="primary"
-                variant="outlined"
-                className={classes.chip}
-                label={area}
-              />
-              {isAvailable && (
+            <Grid xs={12} className={classes.topComponent} item>
+              <Box className={classes.titleRow}>
+                <Typography inline variant="h6" component="h3" display="inline">
+                  {siteName}
+                </Typography>
                 <Chip
                   size={"small"}
                   color="primary"
                   variant="outlined"
-                  className={classes.chip}
-                  label={pluralizedApptLabel}
+                  label={area}
+                  className={classes.location}
                 />
-              )}
+              </Box>
+            </Grid>
+            <Grid xs={12} className={classes.topComponent} item>
+              <Typography className={classes.details} display="">
+                {portalName}
+                {" · "}
+                {pluralizedApptLabel}
+                {" · "}
+                {lastAvailableWord}{" "}
+                <Moment fromNow={true}>{lastAvailableAt}</Moment>
+              </Typography>
             </Grid>
             {isAvailable && (
-              <Grid item xs={12}>
+              <Grid xs={12} className={classes.topComponent} item>
                 {appointments.map((appointment) => (
                   <Typography className={classes.appointmentText}>
                     {appointment}
@@ -156,16 +148,8 @@ export default function Card({
                   href={url}
                   target={"_blank"}
                 >
-                  {isAvailable ? "Reserve" : "No Availability"}
+                  {isAvailable ? "Reserve" : "Unavailable"}
                 </Button>
-              </Grid>
-              <Grid item>
-                <Typography className={classes.lastAvailableAt}>
-                  {lastAvailableWord}{" "}
-                  <Moment parse="YYYY-MM-DD HH:mm" fromNow={true}>
-                    {lastAvailableAt}
-                  </Moment>
-                </Typography>
               </Grid>
             </Grid>
           </Hidden>
@@ -189,14 +173,8 @@ export default function Card({
                   href={url}
                   target={"_blank"}
                 >
-                  {isAvailable ? "Reserve" : "No Availability"}
+                  {isAvailable ? "Reserve" : "Unavailable"}
                 </Button>
-              </Grid>
-              <Grid item>
-                <Typography className={classes.lastAvailableAt}>
-                  {lastAvailableWord}{" "}
-                  <Moment fromNow={true}>{lastAvailableAt}</Moment>
-                </Typography>
               </Grid>
             </Grid>
           </Hidden>

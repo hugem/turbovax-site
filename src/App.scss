@@ -1,32 +1,26 @@
 @import-normalize; /* bring in normalize.css styles */
 
-.container {
-  max-width: 1000px;
-  padding: 1rem;
-  margin: 0 auto;
+body {
+  margin: 0;
 }
 
-.MuiTypography-body1 {
-  font-weight: 300 !important;
-  line-height: 1.6 !important;
-}
+// .MuiTypography-body1 {
+//   font-weight: 300 !important;
+//   line-height: 1.6 !important;
+// }
 
-.about-section {
-  margin: 3rem 0;
-}
-
-ul li {
-  margin-bottom: 0.5rem;
+li::marker {
+  font-weight: 300;
 }
 
 * {
   font-family: "Roboto", sans-serif;
 }
 
-.header-text {
-  font-family: "Merriweather", Georgia !important;
-  letter-spacing: 1px !important;
-  font-weight: 700 !important;
-  text-rendering: optimizeLegibility;
-  font-feature-settings: "kern";
-}
+// .header-text {
+//   font-family: "Merriweather", Georgia !important;
+//   letter-spacing: 1px !important;
+//   text-rendering: optimizeLegibility;
+//   font-weight: 700 !important;
+//   font-feature-settings: "kern";
+// }
