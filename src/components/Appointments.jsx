@@ -50,14 +50,10 @@ export default class Appointments extends React.Component {
     this.setState({ showUnavailable });
 
     axios
-      .get(
-        `https://spreadsheets.google.com/feeds/cells/1ORaOxzA1hKSd7w-iNOj6uS2MaG01l6ff1bHQ0dt2MIA/4/public/full?alt=json`
-      )
+      .get(`https://turbovax.global.ssl.fastly.net/locations`)
       .then((res) => {
-        const jsonList = res.data.feed.entry;
-        const mappedSites = jsonList
-          .filter((info) => info.content.$t !== "")
-          .map((list) => this.mapPersonToVars(JSON.parse(list.content.$t)))
+        const mappedSites = res.data
+          .map((list) => this.mapPersonToVars(list))
           .filter((site) => site.isActive);
 
         const sortedSites = mappedSites.sort((a, b) => {
