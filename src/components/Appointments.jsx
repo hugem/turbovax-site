@@ -2,7 +2,8 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import Box from "@material-ui/core/Box";
-import Hidden from "@material-ui/core/Hidden";
+import { withRouter } from "react-router-dom";
+
 import * as QueryString from "query-string";
 import { Summary, AppointmentList, EmptyCard } from "./index";
 
@@ -12,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default class Appointments extends React.Component {
+class BaseAppointments extends React.Component {
   state = {
     availableSites: [],
     unavailableSites: [],
@@ -59,6 +60,21 @@ export default class Appointments extends React.Component {
   };
 
   handleFilterChange = (filterObjects) => {
+    var url = new URL(window.location.href);
+    var lowerCaseFilters = filterObjects.map((filter) =>
+      filter.name.toLowerCase()
+    );
+
+    this.props.history.push(
+      {
+        state: this.state,
+        // search: "?" + searchParams.toString(),
+        search:
+          "?" + new URLSearchParams({ region: lowerCaseFilters }).toString(),
+      },
+      this.state
+    );
+
     this.setState({
       ...this.state,
       filters: filterObjects.map((filter) => filter.name.toLowerCase()),
@@ -67,14 +83,14 @@ export default class Appointments extends React.Component {
 
   componentDidMount() {
     const showUnavailable = localStorage.getItem("showUnavailable") == "true";
-
     const regionString = QueryString.parse(window.location.search).region || "";
 
     const filterArray = regionString
       .split(",")
+      .filter((string) => string !== "")
       .map((filter) => filter.toLowerCase());
 
-    this.setState({ showUnavailable, filters: filterArray });
+    this.setState({ ...this.state, filters: filterArray });
 
     axios
       .get(`https://turbovax.global.ssl.fastly.net/dashboard`)
@@ -118,7 +134,24 @@ export default class Appointments extends React.Component {
       });
   }
 
+  shouldComponentUpdate(prevProps, prevState, snapshot) {
+    const regionString = QueryString.parse(window.location.search).region || "";
+    const filterArray = regionString
+      .split(",")
+      .filter((string) => string !== "")
+      .map((filter) => filter.toLowerCase());
+
+    const intersection = filterArray && prevState.filters;
+
+    if (intersection.length !== filterArray.length) {
+      this.setState({ ...this.state, filters: filterArray });
+    }
+
+    return true;
+  }
+
   render() {
+    // console.log(this.state);
     const filterEnabled = this.state.filters.length > 0;
     const activeAvailableSites = filterEnabled
       ? this.state.availableSites.filter(
@@ -166,3 +199,5 @@ export default class Appointments extends React.Component {
     );
   }
 }
+
+export default withRouter(BaseAppointments);

@@ -31,8 +31,6 @@ export default function LocationFilter({ enabledFilters, setFilter }) {
     return enabledFilters.includes(area.name.toLowerCase());
   });
 
-  console.log(defaultValue);
-
   return (
     <div className={classes.root}>
       <Autocomplete
