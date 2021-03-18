@@ -3,9 +3,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import MaterialCard from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Box from "@material-ui/core/Box";
-import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
-import { useTheme } from "@material-ui/core/styles";
+
+import LocationFilter from "./filters/LocationFilter";
 
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -35,7 +35,9 @@ export default function EmptyCard({
   foundAvailability,
   showUnavailable,
   handleShowAvailabilityChange,
+  handleFilterChange,
   unavailableCount,
+  filters: enabledFilters,
 }) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
@@ -48,6 +50,7 @@ export default function EmptyCard({
             {!foundAvailability && "TurboVax has not detected availability"}
           </Typography>
           {!foundAvailability && <br />}
+
           <FormControlLabel
             labelPlacement="start"
             control={
@@ -61,6 +64,10 @@ export default function EmptyCard({
             label={`Show ${unavailableCount} unavailable sites`}
           />
         </Box>
+        <LocationFilter
+          setFilter={handleFilterChange}
+          enabledFilters={enabledFilters}
+        />
       </CardContent>
     </MaterialCard>
   );

@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import Box from "@material-ui/core/Box";
 import Hidden from "@material-ui/core/Hidden";
+import * as QueryString from "query-string";
 import { Summary, AppointmentList, EmptyCard } from "./index";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,7 +18,7 @@ export default class Appointments extends React.Component {
     unavailableSites: [],
     showUnavailable: false,
     lastUpdatedAt: null,
-    filters: ["Bronx"],
+    filters: [],
   };
 
   mapPortalByKey(portals) {
@@ -57,9 +58,23 @@ export default class Appointments extends React.Component {
     });
   };
 
+  handleFilterChange = (filterObjects) => {
+    this.setState({
+      ...this.state,
+      filters: filterObjects.map((filter) => filter.name.toLowerCase()),
+    });
+  };
+
   componentDidMount() {
     const showUnavailable = localStorage.getItem("showUnavailable") == "true";
-    this.setState({ showUnavailable });
+
+    const regionString = QueryString.parse(window.location.search).region || "";
+
+    const filterArray = regionString
+      .split(",")
+      .map((filter) => filter.toLowerCase());
+
+    this.setState({ showUnavailable, filters: filterArray });
 
     axios
       .get(`https://turbovax.global.ssl.fastly.net/dashboard`)
@@ -107,13 +122,13 @@ export default class Appointments extends React.Component {
     const filterEnabled = this.state.filters.length > 0;
     const activeAvailableSites = filterEnabled
       ? this.state.availableSites.filter(
-          (site) => this.state.filters.indexOf(site.area) >= 0
+          (site) => this.state.filters.indexOf(site.area.toLowerCase()) >= 0
         )
       : this.state.availableSites;
 
     const activeUnavailableSites = filterEnabled
       ? this.state.unavailableSites.filter(
-          (site) => this.state.filters.indexOf(site.area) >= 0
+          (site) => this.state.filters.indexOf(site.area.toLowerCase()) >= 0
         )
       : this.state.unavailableSites;
 
@@ -137,6 +152,7 @@ export default class Appointments extends React.Component {
           foundAvailability={foundAvailability}
           unavailableCount={activeUnavailableSites.length}
           handleShowAvailabilityChange={this.handleShowAvailabilityChange}
+          handleFilterChange={this.handleFilterChange}
           showUnavailable={this.state.showUnavailable}
           filters={this.state.filters}
         />
