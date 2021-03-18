@@ -16,12 +16,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Summary({ lastUpdatedAt, foundAvailability }) {
+export default function Summary({
+  lastUpdatedAt,
+  foundAvailability,
+  appointmentCount,
+  siteCount,
+}) {
   const classes = useStyles();
   const theme = useTheme();
   const hasAvailabilityClasses = useMediaQuery(theme.breakpoints.up("sm"))
     ? {}
     : { borderTop: 1, borderColor: "rgba(0, 0, 0, 0.12)" };
+
+  const availabilityString = useMediaQuery(theme.breakpoints.up("sm"))
+    ? "Appointments"
+    : "Appts";
+
+  // const ifAvailableString = `${appointmentCount}`
 
   return (
     <Box my={5}>
@@ -44,11 +55,12 @@ export default function Summary({ lastUpdatedAt, foundAvailability }) {
           <Grid item xs={12} sm={6}>
             <Box p={2} {...hasAvailabilityClasses}>
               <Typography>
-                <strong className={classes.strong}>Appointments</strong>:{" "}
+                <strong className={classes.strong}>{availabilityString}</strong>
+                :{" "}
                 {foundAvailability === null
                   ? ""
                   : foundAvailability === true
-                  ? "Available ✅"
+                  ? `${appointmentCount.toLocaleString()} available (${siteCount} sites) ✅`
                   : "Not Available ❌"}
               </Typography>
             </Box>

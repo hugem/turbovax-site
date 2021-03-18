@@ -17,7 +17,7 @@ export default class Appointments extends React.Component {
     unavailableSites: [],
     showUnavailable: false,
     lastUpdatedAt: null,
-    // portals: {},
+    totalCount: 0,
   };
 
   mapPortalByKey(portals) {
@@ -30,8 +30,6 @@ export default class Appointments extends React.Component {
 
   mapLocationToVars(props, portals) {
     const portal = portals[props.portal];
-
-    console.log(portal);
 
     return {
       appointments: props.appointments.summary.split(";"),
@@ -105,6 +103,7 @@ export default class Appointments extends React.Component {
           unavailableSites: unavailableSites,
           showUnavailable,
           lastUpdatedAt,
+          totalCount,
           // portals,
         });
       });
@@ -118,6 +117,8 @@ export default class Appointments extends React.Component {
         <Summary
           lastUpdatedAt={this.state.lastUpdatedAt}
           foundAvailability={foundAvailability}
+          appointmentCount={this.state.totalCount}
+          siteCount={this.state.availableSites.length}
         />
         <Box>
           <AppointmentList sites={this.state.availableSites} />
