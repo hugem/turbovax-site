@@ -17,7 +17,7 @@ export default class Appointments extends React.Component {
     unavailableSites: [],
     showUnavailable: false,
     lastUpdatedAt: null,
-    totalCount: 0,
+    filters: ["Bronx"],
   };
 
   mapPortalByKey(portals) {
@@ -46,7 +46,7 @@ export default class Appointments extends React.Component {
     };
   }
 
-  handleChange = (event) => {
+  handleShowAvailabilityChange = (event) => {
     const newShowUnavailableValue = !this.state.showUnavailable;
 
     localStorage.setItem("showUnavailable", newShowUnavailableValue);
@@ -92,44 +92,58 @@ export default class Appointments extends React.Component {
 
         const lastUpdatedAt = updatedAtArray.sort().reverse()[0];
 
-        const totalCount = availableSites
-          .map((site) => site.count)
-          .reduce((a, b) => a + b, 0);
-
-        document.title = `(${totalCount.toLocaleString()}) TurboVax`;
-
         this.setState({
           availableSites: availableSites,
           unavailableSites: unavailableSites,
           showUnavailable,
           lastUpdatedAt,
-          totalCount,
+          // totalCount,
           // portals,
         });
       });
   }
 
   render() {
-    const foundAvailability = this.state.availableSites.length > 0;
+    const filterEnabled = this.state.filters.length > 0;
+    const activeAvailableSites = filterEnabled
+      ? this.state.availableSites.filter(
+          (site) => this.state.filters.indexOf(site.area) >= 0
+        )
+      : this.state.availableSites;
+
+    const activeUnavailableSites = filterEnabled
+      ? this.state.unavailableSites.filter(
+          (site) => this.state.filters.indexOf(site.area) >= 0
+        )
+      : this.state.unavailableSites;
+
+    const totalCount = activeAvailableSites
+      .map((site) => site.count)
+      .reduce((a, b) => a + b, 0);
+
+    const foundAvailability = totalCount > 0;
+
+    document.title = `(${totalCount.toLocaleString()}) TurboVax`;
 
     return (
       <div>
         <Summary
           lastUpdatedAt={this.state.lastUpdatedAt}
           foundAvailability={foundAvailability}
-          appointmentCount={this.state.totalCount}
-          siteCount={this.state.availableSites.length}
+          appointmentCount={totalCount}
+          siteCount={activeAvailableSites.length}
+        />
+        <EmptyCard
+          foundAvailability={foundAvailability}
+          unavailableCount={activeUnavailableSites.length}
+          handleShowAvailabilityChange={this.handleShowAvailabilityChange}
+          showUnavailable={this.state.showUnavailable}
+          filters={this.state.filters}
         />
         <Box>
-          <AppointmentList sites={this.state.availableSites} />
-          <EmptyCard
-            foundAvailability={foundAvailability}
-            unavailableCount={this.state.unavailableSites.length}
-            handleChange={this.handleChange}
-            showUnavailable={this.state.showUnavailable}
-          />
+          <AppointmentList sites={activeAvailableSites} />
           {this.state.showUnavailable && (
-            <AppointmentList sites={this.state.unavailableSites} />
+            <AppointmentList sites={activeUnavailableSites} />
           )}
         </Box>
       </div>

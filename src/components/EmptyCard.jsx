@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 export default function EmptyCard({
   foundAvailability,
   showUnavailable,
-  handleChange,
+  handleShowAvailabilityChange,
   unavailableCount,
 }) {
   const classes = useStyles();
@@ -53,7 +53,7 @@ export default function EmptyCard({
             control={
               <Switch
                 checked={showUnavailable}
-                onChange={handleChange}
+                onChange={handleShowAvailabilityChange}
                 name="showUnavailbleSites"
                 color="primary"
               />

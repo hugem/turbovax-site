@@ -35,7 +35,8 @@ export default function Summary({
   // const ifAvailableString = `${appointmentCount}`
 
   return (
-    <Box my={5}>
+    // <Box my={5}>
+    <Box mt={8} mb={2}>
       <Card variant="outlined">
         <Grid container align={"center"}>
           <Grid item xs={12} sm={6}>
