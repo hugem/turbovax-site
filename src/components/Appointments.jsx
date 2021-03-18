@@ -75,6 +75,12 @@ export default class Appointments extends React.Component {
 
         const lastUpdatedAt = updatedAtArray.sort().reverse()[0];
 
+        const totalCount = availableSites
+          .map((site) => site.count)
+          .reduce((a, b) => a + b, 0);
+
+        document.title = `(${totalCount}) TurboVax`;
+
         this.setState({
           availableSites: availableSites,
           unavailableSites: unavailableSites,

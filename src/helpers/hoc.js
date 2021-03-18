@@ -5,6 +5,10 @@ import Box from "@material-ui/core/Box";
 // This function takes a component...
 export function asPage(WrappedComponent) {
   return class extends React.Component {
+    componentDidMount() {
+      document.title = `${this.props.pageName} – TurboVax`;
+    }
+
     render() {
       return (
         <div>
