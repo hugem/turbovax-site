@@ -17,20 +17,34 @@ export default class Appointments extends React.Component {
     unavailableSites: [],
     showUnavailable: false,
     lastUpdatedAt: null,
+    // portals: {},
   };
 
-  mapPersonToVars(props) {
+  mapPortalByKey(portals) {
+    let toReturn = {};
+
+    portals.forEach((item) => (toReturn[item.key] = item));
+
+    return toReturn;
+  }
+
+  mapLocationToVars(props, portals) {
+    const portal = portals[props.portal];
+
+    console.log(portal);
+
     return {
-      appointments: props.appointment_times.split(";"),
+      appointments: props.appointments.summary.split(";"),
       area: props.area,
-      count: props.appointment_count,
-      isActive: props.is_active,
-      isAvailable: props.is_available,
+      count: props.appointments.count,
+      isActive: props.active,
+      isAvailable: props.available,
       lastAvailableAt: `${props.last_available_at} -400`,
-      portalName: props.portal_name,
-      siteName: props.site_name,
+      portalName: portal.name,
+      portalShortName: portal.short_name,
+      siteName: props.name,
       updatedAt: `${props.updated_at} -400`,
-      url: props.url,
+      url: portal.url,
     };
   }
 
@@ -50,10 +64,15 @@ export default class Appointments extends React.Component {
     this.setState({ showUnavailable });
 
     axios
-      .get(`https://turbovax.global.ssl.fastly.net/locations`)
+      .get(`https://turbovax.global.ssl.fastly.net/dashboard`)
       .then((res) => {
-        const mappedSites = res.data
-          .map((list) => this.mapPersonToVars(list))
+        const data = res.data;
+
+        const portalsByKey = this.mapPortalByKey(data.portals);
+        // const portalsByKey = data.portals.map((portal) => this.mapPortalByKey(portal));
+
+        const mappedSites = data.locations
+          .map((list) => this.mapLocationToVars(list, portalsByKey))
           .filter((site) => site.isActive);
 
         const sortedSites = mappedSites.sort((a, b) => {
@@ -79,13 +98,14 @@ export default class Appointments extends React.Component {
           .map((site) => site.count)
           .reduce((a, b) => a + b, 0);
 
-        document.title = `(${totalCount}) TurboVax`;
+        document.title = `(${totalCount.toLocaleString()}) TurboVax`;
 
         this.setState({
           availableSites: availableSites,
           unavailableSites: unavailableSites,
           showUnavailable,
           lastUpdatedAt,
+          // portals,
         });
       });
   }

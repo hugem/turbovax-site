@@ -55,6 +55,7 @@ export default function Card({
   count,
   siteName,
   portalName,
+  portalShortName,
   lastAvailableAt,
   url,
   appointments,
@@ -64,6 +65,10 @@ export default function Card({
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
   const theme = useTheme();
+
+  const portalNameToUse = useMediaQuery(theme.breakpoints.up("sm"))
+    ? portalName
+    : portalShortName || portalName;
 
   const appointmentWord = useMediaQuery(theme.breakpoints.up("sm"))
     ? "appointment"
@@ -110,7 +115,7 @@ export default function Card({
             </Grid>
             <Grid xs={12} className={classes.topComponent} item>
               <Typography className={classes.details} display="">
-                {portalName}
+                {portalNameToUse}
                 {" · "}
                 {pluralizedApptLabel}
                 {" · "}
