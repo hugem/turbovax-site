@@ -19,9 +19,6 @@ import HamburgerMenu from "./header/HamburgerLinks";
 import MenuLinks from "./header/MenuLinks";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   title: {
     flexGrow: 1,
   },
@@ -53,7 +50,7 @@ export default function Header() {
   };
 
   return (
-    <header className={classes.root}>
+    <header>
       <Container maxWidth="md">
         <AppBar position="static" color="inherit" elevation={0}>
           <Toolbar display="flex" disableGutters={true}>

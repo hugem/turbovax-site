@@ -15,9 +15,10 @@ function ListItem(props) {
 
 export default function Intro() {
   const theme = useTheme();
+  const navMargin = useMediaQuery(theme.breakpoints.up("sm")) ? 7 : 5;
 
   return (
-    <Box style={{ maxWidth: "700px" }} mBottom={5} mx="auto">
+    <Box style={{ maxWidth: "700px" }} mb={navMargin} mx="auto">
       <Typography>
         TurboVax finds appointments from government-run vaccine sites in the NYC
         area.

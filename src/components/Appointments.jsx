@@ -5,13 +5,12 @@ import Box from "@material-ui/core/Box";
 import { withRouter } from "react-router-dom";
 
 import * as QueryString from "query-string";
-import { Summary, AppointmentList, EmptyCard } from "./index";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-}));
+import {
+  Summary,
+  AppointmentList,
+  FilterCard,
+  ShowUnavailableCard,
+} from "./index";
 
 class BaseAppointments extends React.Component {
   state = {
@@ -134,36 +133,41 @@ class BaseAppointments extends React.Component {
       });
   }
 
-  shouldComponentUpdate(prevProps, prevState, snapshot) {
-    const regionString = QueryString.parse(window.location.search).region || "";
-    const filterArray = regionString
-      .split(",")
-      .filter((string) => string !== "")
-      .map((filter) => filter.toLowerCase());
+  // shouldComponentUpdate(prevProps, prevState, snapshot) {
+  //   const regionString = QueryString.parse(window.location.search).region || "";
+  //   const filterArray = regionString
+  //     .split(",")
+  //     .filter((string) => string !== "")
+  //     .map((filter) => filter.toLowerCase());
 
-    const intersection = filterArray && prevState.filters;
+  //   const intersection = filterArray && prevState.filters;
 
-    if (intersection.length !== filterArray.length) {
-      this.setState({ ...this.state, filters: filterArray });
-    }
+  //   if (intersection.length !== filterArray.length) {
+  //     this.setState({ ...this.state, filters: filterArray });
+  //   }
 
-    return true;
-  }
+  //   return true;
+  // }
 
   render() {
     // console.log(this.state);
-    const filterEnabled = this.state.filters.length > 0;
-    const activeAvailableSites = filterEnabled
-      ? this.state.availableSites.filter(
-          (site) => this.state.filters.indexOf(site.area.toLowerCase()) >= 0
-        )
-      : this.state.availableSites;
+    // const filterEnabled = this.state.filters.length > 0;
+    // const activeAvailableSites = filterEnabled
+    //   ? this.state.availableSites.filter(
+    //       (site) => this.state.filters.indexOf(site.area.toLowerCase()) >= 0
+    //     )
+    //   : this.state.availableSites;
 
-    const activeUnavailableSites = filterEnabled
-      ? this.state.unavailableSites.filter(
-          (site) => this.state.filters.indexOf(site.area.toLowerCase()) >= 0
-        )
-      : this.state.unavailableSites;
+    // const activeUnavailableSites = filterEnabled
+    //   ? this.state.unavailableSites.filter(
+    //       (site) => this.state.filters.indexOf(site.area.toLowerCase()) >= 0
+    //     )
+    //   : this.state.unavailableSites;
+
+    const filterEnabled = this.state.filters.length > 0;
+    const activeAvailableSites = this.state.availableSites;
+
+    const activeUnavailableSites = this.state.unavailableSites;
 
     const totalCount = activeAvailableSites
       .map((site) => site.count)
@@ -171,26 +175,34 @@ class BaseAppointments extends React.Component {
 
     const foundAvailability = totalCount > 0;
 
-    document.title = `(${totalCount.toLocaleString()}) TurboVax`;
+    // document.title = `(${totalCount.toLocaleString()}) TurboVax`;
 
     return (
       <div>
-        <Summary
-          lastUpdatedAt={this.state.lastUpdatedAt}
-          foundAvailability={foundAvailability}
-          appointmentCount={totalCount}
-          siteCount={activeAvailableSites.length}
-        />
-        <EmptyCard
+        <Box>
+          <Summary
+            lastUpdatedAt={this.state.lastUpdatedAt}
+            foundAvailability={foundAvailability}
+            appointmentCount={totalCount}
+            siteCount={activeAvailableSites.length}
+          />
+        </Box>
+        {/* <FilterCard
           foundAvailability={foundAvailability}
           unavailableCount={activeUnavailableSites.length}
           handleShowAvailabilityChange={this.handleShowAvailabilityChange}
           handleFilterChange={this.handleFilterChange}
           showUnavailable={this.state.showUnavailable}
           filters={this.state.filters}
-        />
+        /> */}
         <Box>
           <AppointmentList sites={activeAvailableSites} />
+          <ShowUnavailableCard
+            foundAvailability={foundAvailability}
+            unavailableCount={activeUnavailableSites.length}
+            handleShowAvailabilityChange={this.handleShowAvailabilityChange}
+            showUnavailable={this.state.showUnavailable}
+          />
           {this.state.showUnavailable && (
             <AppointmentList sites={activeUnavailableSites} />
           )}

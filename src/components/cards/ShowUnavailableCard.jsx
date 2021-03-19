@@ -2,16 +2,11 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import MaterialCard from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 
-import LocationFilter from "./filters/LocationFilter";
-
-import FormGroup from "@material-ui/core/FormGroup";
+import Box from "@material-ui/core/Box";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
-
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -64,10 +59,6 @@ export default function EmptyCard({
             label={`Show ${unavailableCount} unavailable sites`}
           />
         </Box>
-        <LocationFilter
-          setFilter={handleFilterChange}
-          enabledFilters={enabledFilters}
-        />
       </CardContent>
     </MaterialCard>
   );

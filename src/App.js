@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function App() {
   const theme = useTheme();
-  const navMargin = useMediaQuery(theme.breakpoints.up("sm")) ? 5 : 3;
+  const navMargin = useMediaQuery(theme.breakpoints.up("sm")) ? 6 : 5;
 
   return (
     <div>

@@ -1,23 +1,23 @@
 import Alert from "./Alert";
 import Intro from "./Intro";
-import Summary from "./Summary";
+import Summary from "./cards/Summary";
 import Appointments from "./Appointments";
 import Header from "./Header";
-import LabelCard from "./LabelCard";
+import FilterCard from "./cards/FilterCard";
+import ShowUnavailableCard from "./cards/ShowUnavailableCard";
 import Card from "./Card";
 import StatusTable from "./StatusTable";
 import AppointmentList from "./AppointmentList";
-import EmptyCard from "./EmptyCard";
 
 export {
   Alert,
   Intro,
   Appointments,
   Header,
-  LabelCard,
+  FilterCard,
   Card,
   StatusTable,
   Summary,
   AppointmentList,
-  EmptyCard,
+  ShowUnavailableCard,
 };
