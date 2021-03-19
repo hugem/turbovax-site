@@ -175,7 +175,7 @@ class BaseAppointments extends React.Component {
 
     const foundAvailability = totalCount > 0;
 
-    // document.title = `(${totalCount.toLocaleString()}) TurboVax`;
+    document.title = `(${totalCount.toLocaleString()}) TurboVax`;
 
     return (
       <div>
