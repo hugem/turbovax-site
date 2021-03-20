@@ -4,18 +4,26 @@ import Box from "@material-ui/core/Box";
 
 export default function Alert() {
   return (
-    <Box my={5}>
+    <Box my={2}>
       <MaterialAlert severity="info">
-        <b>Update (3/1 12PM):</b> TurboVax is back online. Please take a moment
-        to educate yourself on{" "}
+        <b>Update (3/20):</b> Pharmacies are now vaccinating{" "}
         <Link
           target="_blank"
-          href="https://twitter.com/turbovax/status/1365713333287079953"
+          href="https://twitter.com/turbovax/status/1373252610887716869"
           rel="noreferrer"
         >
-          anti-Asian hate
+          those with underlying conditions
         </Link>{" "}
-        and what you can do to help end it.
+        (in addition to the already-eligible educators, childcare workers and
+        60+). Please see{" "}
+        <Link
+          target="_blank"
+          href="https://vaccinefinder.nyc.gov/"
+          rel="noreferrer"
+        >
+          NYC Vaccine Finder
+        </Link>{" "}
+        for real-time availability.
       </MaterialAlert>
     </Box>
   );
