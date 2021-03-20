@@ -120,7 +120,9 @@ export default function Card({
                 {pluralizedApptLabel}
                 {" · "}
                 {lastAvailableWord}{" "}
-                <Moment fromNow={true}>{lastAvailableAt}</Moment>
+                <Moment fromNow={true} parse="YYYY-MM-DD HH:mm">
+                  {lastAvailableAt}
+                </Moment>
               </Typography>
             </Grid>
             {isAvailable && (

@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import Box from "@material-ui/core/Box";
+import FilterButton from "./filters/FilterButton";
 import { withRouter } from "react-router-dom";
 
 import * as QueryString from "query-string";
@@ -150,24 +151,23 @@ class BaseAppointments extends React.Component {
   // }
 
   render() {
-    // console.log(this.state);
-    // const filterEnabled = this.state.filters.length > 0;
-    // const activeAvailableSites = filterEnabled
-    //   ? this.state.availableSites.filter(
-    //       (site) => this.state.filters.indexOf(site.area.toLowerCase()) >= 0
-    //     )
-    //   : this.state.availableSites;
-
-    // const activeUnavailableSites = filterEnabled
-    //   ? this.state.unavailableSites.filter(
-    //       (site) => this.state.filters.indexOf(site.area.toLowerCase()) >= 0
-    //     )
-    //   : this.state.unavailableSites;
-
     const filterEnabled = this.state.filters.length > 0;
-    const activeAvailableSites = this.state.availableSites;
+    const activeAvailableSites = filterEnabled
+      ? this.state.availableSites.filter(
+          (site) => this.state.filters.indexOf(site.area.toLowerCase()) >= 0
+        )
+      : this.state.availableSites;
 
-    const activeUnavailableSites = this.state.unavailableSites;
+    const activeUnavailableSites = filterEnabled
+      ? this.state.unavailableSites.filter(
+          (site) => this.state.filters.indexOf(site.area.toLowerCase()) >= 0
+        )
+      : this.state.unavailableSites;
+
+    // const filterEnabled = this.state.filters.length > 0;
+    // const activeAvailableSites = this.state.availableSites;
+
+    // const activeUnavailableSites = this.state.unavailableSites;
 
     const totalCount = activeAvailableSites
       .map((site) => site.count)
@@ -187,12 +187,17 @@ class BaseAppointments extends React.Component {
             siteCount={activeAvailableSites.length}
           />
         </Box>
+        {/* <Box align="right" mb={2}>
+          <FilterButton
+            handleFilterChange={this.handleFilterChange}
+            filters={this.state.filters} />
+        </Box> */}
         {/* <FilterCard
           foundAvailability={foundAvailability}
           unavailableCount={activeUnavailableSites.length}
           handleShowAvailabilityChange={this.handleShowAvailabilityChange}
-          handleFilterChange={this.handleFilterChange}
           showUnavailable={this.state.showUnavailable}
+          handleFilterChange={this.handleFilterChange}
           filters={this.state.filters}
         /> */}
         <Box>

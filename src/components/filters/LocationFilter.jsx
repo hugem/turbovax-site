@@ -1,13 +1,14 @@
 /* eslint-disable no-use-before-define */
 import React from "react";
-import Chip from "@material-ui/core/Chip";
+import Box from "@material-ui/core/Box";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
-  card: {
-    width: 500,
+  root: {
+    minWidth: "300px",
+    maxWidth: "500px",
     "& > * + *": {
       marginTop: theme.spacing(3),
     },
@@ -24,21 +25,21 @@ const areas = [
   { name: "Upstate", region: "Other" },
 ];
 
-export default function LocationFilter({ enabledFilters, setFilter }) {
+export default function LocationFilter({ filters, handleFilterChange }) {
   const classes = useStyles();
 
   const defaultValue = areas.filter((area) => {
-    return enabledFilters.includes(area.name.toLowerCase());
+    return filters.includes(area.name.toLowerCase());
   });
 
   return (
-    <div className={classes.root}>
+    <Box p={2} className={classes.root}>
       <Autocomplete
         multiple
         id="tags-standard"
         options={areas}
         onChange={(event, newValue) => {
-          setFilter(newValue);
+          handleFilterChange(newValue);
         }}
         getOptionLabel={(option) => option.name}
         groupBy={(option) => option.region}
@@ -52,6 +53,6 @@ export default function LocationFilter({ enabledFilters, setFilter }) {
           />
         )}
       />
-    </div>
+    </Box>
   );
 }
