@@ -1,5 +1,6 @@
 import React from "react";
 
+import Pluralize from "react-pluralize";
 import Typography from "@material-ui/core/Typography";
 import Moment from "react-moment";
 import { useTheme, makeStyles } from "@material-ui/core/styles";
@@ -25,6 +26,14 @@ export default function Summary({
     ? "Appointments"
     : "Appts";
 
+  const pluralizedSiteLabel = (
+    <span>
+      {appointmentCount.toLocaleString()} available (
+      {siteCount.toLocaleString()}{" "}
+      <Pluralize singular="site" count={siteCount} showCount={false} />) ✅
+    </span>
+  );
+
   const leftComponent = (
     <Typography>
       <strong className={classes.strong}>Updated</strong>:{" "}
@@ -44,7 +53,7 @@ export default function Summary({
       {foundAvailability === null
         ? ""
         : foundAvailability === true
-        ? `${appointmentCount.toLocaleString()} available (${siteCount} sites) ✅`
+        ? pluralizedSiteLabel
         : "Not Available ❌"}
     </Typography>
   );
