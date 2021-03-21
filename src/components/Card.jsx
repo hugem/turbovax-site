@@ -116,8 +116,8 @@ export default function Card({
             <Grid xs={12} className={classes.topComponent} item>
               <Typography className={classes.details} display="">
                 {portalNameToUse}
-                {" · "}
-                {pluralizedApptLabel}
+                {count > 0 && " · "}
+                {count > 0 && pluralizedApptLabel}
                 {" · "}
                 {lastAvailableWord}{" "}
                 <Moment fromNow={true} parse="YYYY-MM-DD HH:mm">

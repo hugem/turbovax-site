@@ -26,13 +26,19 @@ export default function Summary({
     ? "Appointments"
     : "Appts";
 
-  const pluralizedSiteLabel = (
-    <span>
-      {appointmentCount.toLocaleString()} available (
-      {siteCount.toLocaleString()}{" "}
-      <Pluralize singular="site" count={siteCount} showCount={false} />) ✅
-    </span>
-  );
+  const pluralizedSiteLabel =
+    appointmentCount > 0 ? (
+      <span>
+        {appointmentCount.toLocaleString()} available (
+        {siteCount.toLocaleString()}{" "}
+        <Pluralize singular="site" count={siteCount} showCount={false} />) ✅
+      </span>
+    ) : (
+      <span>
+        {siteCount.toLocaleString()}{" "}
+        <Pluralize singular="site" count={siteCount} showCount={false} /> ✅
+      </span>
+    );
 
   const leftComponent = (
     <Typography>

@@ -173,9 +173,11 @@ class BaseAppointments extends React.Component {
       .map((site) => site.count)
       .reduce((a, b) => a + b, 0);
 
-    const foundAvailability = totalCount > 0;
+    const foundAvailability = activeAvailableSites.length > 0;
 
-    document.title = `(${totalCount.toLocaleString()}) TurboVax`;
+    if (totalCount > 0) {
+      document.title = `(${totalCount.toLocaleString()}) TurboVax`;
+    }
 
     return (
       <div>
