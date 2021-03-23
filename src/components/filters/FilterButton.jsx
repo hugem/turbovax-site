@@ -29,6 +29,9 @@ export default function FilterButton(props) {
 
   console.log(props);
 
+  const buttonText =
+    props.filters.length > 0 ? `Filters (${props.filters.length})` : `Filters`;
+
   return (
     <div>
       <Button
@@ -38,7 +41,7 @@ export default function FilterButton(props) {
         onClick={handleClick}
         disableElevation
       >
-        <FilterListIcon /> Filters
+        <FilterListIcon /> {buttonText}
       </Button>
       <Popover
         id={id}

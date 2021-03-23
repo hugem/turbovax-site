@@ -5,6 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
+import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
@@ -12,6 +13,7 @@ import Chip from "@material-ui/core/Chip";
 import Moment from "react-moment";
 import Pluralize from "react-pluralize";
 import { useTheme } from "@material-ui/core/styles";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
@@ -61,6 +63,8 @@ export default function Card({
   appointments,
   isAvailable,
   area,
+  formattedAddress,
+  metadata,
 }) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
@@ -86,6 +90,8 @@ export default function Card({
   );
 
   const lastAvailableWord = isAvailable ? "checked" : "available";
+  const showAppointments =
+    isAvailable && appointments.length > 0 && appointments[0] !== "";
 
   return (
     <MaterialCard className={classes.card} variant="outlined">
@@ -113,6 +119,7 @@ export default function Card({
                 />
               </Box>
             </Grid>
+
             <Grid xs={12} className={classes.topComponent} item>
               <Typography className={classes.details} display="">
                 {portalNameToUse}
@@ -125,7 +132,21 @@ export default function Card({
                 </Moment>
               </Typography>
             </Grid>
-            {isAvailable && (
+            {formattedAddress && (
+              <Grid xs={12} className={classes.topComponent} item>
+                <Typography className={classes.details}>
+                  <LocationOnIcon fontSize="inherit" />{" "}
+                  <Link
+                    target="_blank"
+                    href={`https://www.google.com/maps/place/${formattedAddress}`}
+                    rel="noreferrer"
+                  >
+                    {formattedAddress}
+                  </Link>
+                </Typography>
+              </Grid>
+            )}
+            {showAppointments && (
               <Grid xs={12} className={classes.topComponent} item>
                 {appointments.map((appointment) => (
                   <Typography className={classes.appointmentText}>
@@ -158,6 +179,21 @@ export default function Card({
                   {isAvailable ? "Reserve" : "Unavailable"}
                 </Button>
               </Grid>
+              {metadata && (
+                <Grid item align="center">
+                  <Box mt={1}>
+                    <Typography className={classes.details}>
+                      <Link
+                        target="_blank"
+                        href={metadata.url}
+                        rel="noreferrer"
+                      >
+                        {metadata.notes}
+                      </Link>
+                    </Typography>
+                  </Box>
+                </Grid>
+              )}
             </Grid>
           </Hidden>
           <Hidden smUp>
@@ -183,6 +219,21 @@ export default function Card({
                   {isAvailable ? "Reserve" : "Unavailable"}
                 </Button>
               </Grid>
+              {metadata && (
+                <Grid item align="center">
+                  <Box mt={1}>
+                    <Typography className={classes.details}>
+                      <Link
+                        target="_blank"
+                        href={metadata.url}
+                        rel="noreferrer"
+                      >
+                        {metadata.notes}
+                      </Link>
+                    </Typography>
+                  </Box>
+                </Grid>
+              )}
             </Grid>
           </Hidden>
         </Grid>

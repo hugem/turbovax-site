@@ -39,12 +39,14 @@ class BaseAppointments extends React.Component {
       count: props.appointments.count,
       isActive: props.active,
       isAvailable: props.available,
-      lastAvailableAt: `${props.last_available_at} -400`,
+      lastAvailableAt: props.last_available_at,
       portalName: portal.name,
       portalShortName: portal.short_name,
       siteName: props.name,
-      updatedAt: `${props.updated_at} -400`,
+      updatedAt: props.updated_at,
       url: portal.url,
+      formattedAddress: props.formatted_address,
+      metadata: props.metadata,
     };
   }
 
@@ -93,7 +95,8 @@ class BaseAppointments extends React.Component {
     this.setState({ ...this.state, filters: filterArray });
 
     axios
-      .get(`https://turbovax.global.ssl.fastly.net/dashboard`)
+      // .get(`https://turbovax.global.ssl.fastly.net/dashboard`)
+      .get(`http://localhost:3000/dashboard`)
       .then((res) => {
         const data = res.data;
 
@@ -189,11 +192,12 @@ class BaseAppointments extends React.Component {
             siteCount={activeAvailableSites.length}
           />
         </Box>
-        {/* <Box align="right" mb={2}>
+        <Box align="right" mb={2}>
           <FilterButton
             handleFilterChange={this.handleFilterChange}
-            filters={this.state.filters} />
-        </Box> */}
+            filters={this.state.filters}
+          />
+        </Box>
         {/* <FilterCard
           foundAvailability={foundAvailability}
           unavailableCount={activeUnavailableSites.length}

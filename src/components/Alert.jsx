@@ -6,7 +6,7 @@ export default function Alert() {
   return (
     <Box my={2}>
       <MaterialAlert severity="info">
-        <b>Update (3/20):</b> Pharmacies are now vaccinating{" "}
+        <b>Update (3/20):</b> Pharmacies are now free to vaccinate{" "}
         <Link
           target="_blank"
           href="https://twitter.com/turbovax/status/1373252610887716869"

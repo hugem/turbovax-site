@@ -22,7 +22,7 @@ const areas = [
   { name: "Queens", region: "New York City" },
   { name: "Staten Island", region: "New York City" },
   { name: "Long Island", region: "Other" },
-  { name: "Upstate", region: "Other" },
+  { name: "Mid-Hudson", region: "Other" },
 ];
 
 export default function LocationFilter({ filters, handleFilterChange }) {
@@ -48,8 +48,8 @@ export default function LocationFilter({ filters, handleFilterChange }) {
           <TextField
             {...params}
             variant="standard"
-            label="Filter by region"
-            placeholder="Queens (the best boro in NYC)"
+            label="Filter by borough"
+            placeholder="Queens..."
           />
         )}
       />
