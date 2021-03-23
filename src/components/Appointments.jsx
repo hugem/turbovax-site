@@ -61,6 +61,21 @@ class BaseAppointments extends React.Component {
     });
   };
 
+  handleFilterClear = () => {
+    var url = new URL(window.location.href);
+    this.props.history.push(
+      {
+        state: this.state,
+      },
+      this.state
+    );
+
+    this.setState({
+      ...this.state,
+      filters: [],
+    });
+  };
+
   handleFilterChange = (filterObjects) => {
     var url = new URL(window.location.href);
     var lowerCaseFilters = filterObjects.map((filter) =>
@@ -137,21 +152,21 @@ class BaseAppointments extends React.Component {
       });
   }
 
-  // shouldComponentUpdate(prevProps, prevState, snapshot) {
-  //   const regionString = QueryString.parse(window.location.search).region || "";
-  //   const filterArray = regionString
-  //     .split(",")
-  //     .filter((string) => string !== "")
-  //     .map((filter) => filter.toLowerCase());
+  shouldComponentUpdate(prevProps, prevState, snapshot) {
+    const regionString = QueryString.parse(window.location.search).region || "";
+    const filterArray = regionString
+      .split(",")
+      .filter((string) => string !== "")
+      .map((filter) => filter.toLowerCase());
 
-  //   const intersection = filterArray && prevState.filters;
+    const intersection = filterArray && prevState.filters;
 
-  //   if (intersection.length !== filterArray.length) {
-  //     this.setState({ ...this.state, filters: filterArray });
-  //   }
+    if (intersection.length !== filterArray.length) {
+      this.setState({ ...this.state, filters: filterArray });
+    }
 
-  //   return true;
-  // }
+    return true;
+  }
 
   render() {
     const filterEnabled = this.state.filters.length > 0;
@@ -192,8 +207,9 @@ class BaseAppointments extends React.Component {
             siteCount={activeAvailableSites.length}
           />
         </Box>
-        <Box align="right" mb={2}>
+        <Box align="right" mt={6} mb={2}>
           <FilterButton
+            handleFilterClear={this.handleFilterClear}
             handleFilterChange={this.handleFilterChange}
             filters={this.state.filters}
           />

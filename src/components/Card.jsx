@@ -137,6 +137,7 @@ export default function Card({
                 <Typography className={classes.details}>
                   <LocationOnIcon fontSize="inherit" />{" "}
                   <Link
+                    underline="always"
                     target="_blank"
                     href={`https://www.google.com/maps/place/${formattedAddress}`}
                     rel="noreferrer"

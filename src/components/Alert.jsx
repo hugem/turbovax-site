@@ -6,24 +6,26 @@ export default function Alert() {
   return (
     <Box my={2}>
       <MaterialAlert severity="info">
-        <b>Update (3/20):</b> Pharmacies are now free to vaccinate{" "}
+        <b>Update (3/23):</b> NYS has{" "}
         <Link
           target="_blank"
-          href="https://twitter.com/turbovax/status/1373252610887716869"
+          underline="always"
+          href="https://gothamist.com/news/starting-tuesday-new-yorkers-age-50-will-be-eligible-covid-vaccines"
           rel="noreferrer"
         >
-          those with underlying conditions
+          expanded eligiblity
         </Link>{" "}
-        (in addition to the already-eligible educators, childcare workers and
-        60+). Please see{" "}
+        to include those aged 50+. Pharmacies are{" "}
         <Link
+          underline="always"
           target="_blank"
-          href="https://vaccinefinder.nyc.gov/"
+          href="https://twitter.com/mayakauf/status/1374056610688086018"
           rel="noreferrer"
         >
-          NYC Vaccine Finder
+          included in this expansion
         </Link>{" "}
-        for real-time availability.
+        (educators and those with underlying conditions are also pharmacy
+        eligible).
       </MaterialAlert>
     </Box>
   );

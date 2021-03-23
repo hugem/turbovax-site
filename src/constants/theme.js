@@ -1,4 +1,5 @@
 import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
+import teal from "@material-ui/core/colors/teal";
 
 const theme = createMuiTheme({
   breakpoints: {
@@ -32,6 +33,20 @@ const theme = createMuiTheme({
       letterSpacing: ".02rem",
       textRendering: "optimizeLegibility",
     },
+  },
+  palette: {
+    // warning: {
+    //   main: '#B49A67',
+    // },
+    secondary: {
+      main: "#CEB3AB",
+      main: "#B5BEC6",
+    },
+    err: {
+      main: "#466365",
+    },
+    // main: '#C4C6E7',
+    // }
   },
 });
 

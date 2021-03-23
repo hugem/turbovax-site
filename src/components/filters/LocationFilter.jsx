@@ -7,8 +7,6 @@ import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: "300px",
-    maxWidth: "500px",
     "& > * + *": {
       marginTop: theme.spacing(3),
     },
@@ -36,7 +34,6 @@ export default function LocationFilter({ filters, handleFilterChange }) {
     <Box p={2} className={classes.root}>
       <Autocomplete
         multiple
-        id="tags-standard"
         options={areas}
         onChange={(event, newValue) => {
           handleFilterChange(newValue);
@@ -47,7 +44,7 @@ export default function LocationFilter({ filters, handleFilterChange }) {
         renderInput={(params) => (
           <TextField
             {...params}
-            variant="standard"
+            variant="outlined"
             label="Filter by borough"
             placeholder="Queens..."
           />
