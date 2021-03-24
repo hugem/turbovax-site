@@ -5,7 +5,6 @@ import Appointments from "./Appointments";
 import Header from "./Header";
 import FilterCard from "./cards/FilterCard";
 import ShowUnavailableCard from "./cards/ShowUnavailableCard";
-import Card from "./Card";
 import StatusTable from "./StatusTable";
 import AppointmentList from "./AppointmentList";
 
@@ -15,7 +14,6 @@ export {
   Appointments,
   Header,
   FilterCard,
-  Card,
   StatusTable,
   Summary,
   AppointmentList,

@@ -13,6 +13,8 @@ import {
   ShowUnavailableCard,
 } from "./index";
 
+import { LOCATION_FILTERS_BY_VALUE } from "./../constants/filters";
+
 class BaseAppointments extends React.Component {
   state = {
     availableSites: [],
@@ -34,7 +36,8 @@ class BaseAppointments extends React.Component {
     const portal = portals[props.portal];
 
     return {
-      appointments: props.appointments.summary.split(";"),
+      id: props.id,
+      appointments: (props.appointments.summary || "").split(";"),
       area: props.area,
       count: props.appointments.count,
       isActive: props.active,
@@ -45,6 +48,7 @@ class BaseAppointments extends React.Component {
       siteName: props.name,
       updatedAt: props.updated_at,
       url: portal.url,
+      showPortalName: portal.show_name_in_card,
       formattedAddress: props.formatted_address,
       metadata: props.metadata,
     };
@@ -77,10 +81,7 @@ class BaseAppointments extends React.Component {
   };
 
   handleFilterChange = (filterObjects) => {
-    var url = new URL(window.location.href);
-    var lowerCaseFilters = filterObjects.map((filter) =>
-      filter.name.toLowerCase()
-    );
+    var lowerCaseFilters = filterObjects.map((filter) => filter.value);
 
     this.props.history.push(
       {
@@ -92,9 +93,12 @@ class BaseAppointments extends React.Component {
       this.state
     );
 
+    // console.log(lowerCaseFilters)
+    // console.log(filterObjects)
+
     this.setState({
       ...this.state,
-      filters: filterObjects.map((filter) => filter.name.toLowerCase()),
+      filters: filterObjects,
     });
   };
 
@@ -105,12 +109,13 @@ class BaseAppointments extends React.Component {
     const filterArray = regionString
       .split(",")
       .filter((string) => string !== "")
-      .map((filter) => filter.toLowerCase());
+      .map((filter) => LOCATION_FILTERS_BY_VALUE[filter.toLowerCase()]);
 
     this.setState({ ...this.state, filters: filterArray });
 
     axios
       .get(`https://turbovax.global.ssl.fastly.net/dashboard`)
+      // .get(`http://localhost:3000/dashboard`)
       .then((res) => {
         const data = res.data;
 
@@ -156,7 +161,7 @@ class BaseAppointments extends React.Component {
     const filterArray = regionString
       .split(",")
       .filter((string) => string !== "")
-      .map((filter) => filter.toLowerCase());
+      .map((filter) => LOCATION_FILTERS_BY_VALUE[filter.toLowerCase()]);
 
     const intersection = filterArray && prevState.filters;
 
@@ -169,15 +174,18 @@ class BaseAppointments extends React.Component {
 
   render() {
     const filterEnabled = this.state.filters.length > 0;
+
+    const filterNames = this.state.filters.map((filter) => filter.name);
+
     const activeAvailableSites = filterEnabled
       ? this.state.availableSites.filter(
-          (site) => this.state.filters.indexOf(site.area.toLowerCase()) >= 0
+          (site) => filterNames.indexOf(site.area) >= 0
         )
       : this.state.availableSites;
 
     const activeUnavailableSites = filterEnabled
       ? this.state.unavailableSites.filter(
-          (site) => this.state.filters.indexOf(site.area.toLowerCase()) >= 0
+          (site) => filterNames.indexOf(site.area) >= 0
         )
       : this.state.unavailableSites;
 
@@ -213,17 +221,10 @@ class BaseAppointments extends React.Component {
             filters={this.state.filters}
           />
         </Box>
-        {/* <FilterCard
-          foundAvailability={foundAvailability}
-          unavailableCount={activeUnavailableSites.length}
-          handleShowAvailabilityChange={this.handleShowAvailabilityChange}
-          showUnavailable={this.state.showUnavailable}
-          handleFilterChange={this.handleFilterChange}
-          filters={this.state.filters}
-        /> */}
         <Box>
           <AppointmentList sites={activeAvailableSites} />
           <ShowUnavailableCard
+            filters={this.state.filters}
             foundAvailability={foundAvailability}
             unavailableCount={activeUnavailableSites.length}
             handleShowAvailabilityChange={this.handleShowAvailabilityChange}

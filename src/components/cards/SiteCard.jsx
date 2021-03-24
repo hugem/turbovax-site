@@ -53,22 +53,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Card({
-  count,
-  siteName,
+export function TitleRow({ siteName, area, classes }) {
+  return (
+    <Box className={classes.titleRow}>
+      <Typography inline variant="h6" component="h3" display="inline">
+        {siteName}
+      </Typography>
+      <Chip
+        size={"small"}
+        color="primary"
+        variant="outlined"
+        label={area}
+        className={classes.location}
+      />
+    </Box>
+  );
+}
+
+export function DetailsRowWithGrid({
   portalName,
   portalShortName,
-  lastAvailableAt,
-  url,
-  appointments,
   isAvailable,
-  area,
-  formattedAddress,
-  metadata,
+  count,
+  showPortalName,
+  classes,
+  lastAvailableAt,
 }) {
-  const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
   const theme = useTheme();
+  let components = [];
 
   const portalNameToUse = useMediaQuery(theme.breakpoints.up("sm"))
     ? portalName
@@ -77,19 +89,68 @@ export default function Card({
   const appointmentWord = useMediaQuery(theme.breakpoints.up("sm"))
     ? "appointment"
     : "appt";
-  const countToUse = isAvailable ? count : 0;
-  const pluralizedApptLabel = (
+
+  if (showPortalName) {
+    components.push(portalNameToUse);
+  }
+
+  components.push(
     <span>
-      {countToUse.toLocaleString()}{" "}
-      <Pluralize
-        singular={appointmentWord}
-        count={countToUse}
-        showCount={false}
-      />
+      {count.toLocaleString()}{" "}
+      <Pluralize singular={appointmentWord} count={count} showCount={false} />
     </span>
   );
 
-  const lastAvailableWord = isAvailable ? "checked" : "available";
+  if (lastAvailableAt !== null) {
+    const lastAvailableWord = isAvailable ? "checked" : "available";
+
+    components.push(
+      <span>
+        {lastAvailableWord}{" "}
+        <Moment fromNow={true} parse="YYYY-MM-DD HH:mm">
+          {lastAvailableAt}
+        </Moment>
+      </span>
+    );
+  }
+
+  if (components.length === 1) {
+    return null;
+  }
+
+  return (
+    <Grid xs={12} className={classes.topComponent} item>
+      <Typography className={classes.details} display="">
+        {components.map(function (item, index) {
+          const isLastElement = index === components.length - 1;
+          return (
+            <span key={index}>
+              {item}
+              {!isLastElement && " · "}
+            </span>
+          );
+        })}
+      </Typography>
+    </Grid>
+  );
+}
+
+export default function SiteCard({
+  count,
+  siteName,
+  portalName,
+  portalShortName,
+  lastAvailableAt,
+  url,
+  showPortalName,
+  appointments,
+  isAvailable,
+  area,
+  formattedAddress,
+  metadata,
+}) {
+  const classes = useStyles();
+
   const showAppointments =
     isAvailable && appointments.length > 0 && appointments[0] !== "";
 
@@ -106,32 +167,20 @@ export default function Card({
             className={classes.column}
           >
             <Grid xs={12} className={classes.topComponent} item>
-              <Box className={classes.titleRow}>
-                <Typography inline variant="h6" component="h3" display="inline">
-                  {siteName}
-                </Typography>
-                <Chip
-                  size={"small"}
-                  color="primary"
-                  variant="outlined"
-                  label={area}
-                  className={classes.location}
-                />
-              </Box>
+              <TitleRow {...{ siteName, area, classes }} />
             </Grid>
 
-            <Grid xs={12} className={classes.topComponent} item>
-              <Typography className={classes.details} display="">
-                {portalNameToUse}
-                {count > 0 && " · "}
-                {count > 0 && pluralizedApptLabel}
-                {" · "}
-                {lastAvailableWord}{" "}
-                <Moment fromNow={true} parse="YYYY-MM-DD HH:mm">
-                  {lastAvailableAt}
-                </Moment>
-              </Typography>
-            </Grid>
+            <DetailsRowWithGrid
+              {...{
+                portalName,
+                portalShortName,
+                isAvailable,
+                count,
+                showPortalName,
+                classes,
+                lastAvailableAt,
+              }}
+            />
             {formattedAddress && (
               <Grid xs={12} className={classes.topComponent} item>
                 <Typography className={classes.details}>

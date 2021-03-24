@@ -55,7 +55,7 @@ export default function FilterButton(props) {
   return (
     <div>
       <Button
-        size="sm"
+        size="small"
         variant="contained"
         color="secondary"
         onClick={handleClick}

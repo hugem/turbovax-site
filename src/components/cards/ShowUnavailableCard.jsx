@@ -8,6 +8,8 @@ import Box from "@material-ui/core/Box";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 
+// import { LOCATION_FILTERS_BY_ } from "./../../constants/filters";
+
 const useStyles = makeStyles((theme) => ({
   card: {
     marginBottom: "1rem",
@@ -26,26 +28,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EmptyCard({
+export default function ShowUnavailableCard({
   foundAvailability,
   showUnavailable,
   handleShowAvailabilityChange,
   handleFilterChange,
   unavailableCount,
-  filters: enabledFilters,
+  filters,
 }) {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+
+  let detectedAvailabilityString = "TurboVax has not detected availability";
+  let showUnavailableString = `Show ${unavailableCount} unavailable sites`;
+  const filterStringArray = filters.map((filter) => filter.name);
+  const filterString = ` in [${filterStringArray.join(", ")}]`;
+
+  if (filters.length > 0 && foundAvailability) {
+    showUnavailableString += filterString;
+  } else if (filters.length > 0 && !foundAvailability) {
+    detectedAvailabilityString += filterString;
+  }
 
   return (
     <MaterialCard className={classes.card} variant="outlined">
       <CardContent className={classes.cardContent}>
         <Box align="center" py={2}>
           <Typography>
-            {!foundAvailability && "TurboVax has not detected availability"}
+            {!foundAvailability && detectedAvailabilityString}
           </Typography>
           {!foundAvailability && <br />}
-
           <FormControlLabel
             labelPlacement="start"
             control={
@@ -56,7 +67,7 @@ export default function EmptyCard({
                 color="primary"
               />
             }
-            label={`Show ${unavailableCount} unavailable sites`}
+            label={showUnavailableString}
           />
         </Box>
       </CardContent>
