@@ -110,8 +110,7 @@ class BaseAppointments extends React.Component {
     this.setState({ ...this.state, filters: filterArray });
 
     axios
-      // .get(`https://turbovax.global.ssl.fastly.net/dashboard`)
-      .get(`http://localhost:3000/dashboard`)
+      .get(`https://turbovax.global.ssl.fastly.net/dashboard`)
       .then((res) => {
         const data = res.data;
 
