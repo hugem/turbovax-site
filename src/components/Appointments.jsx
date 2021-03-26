@@ -15,6 +15,9 @@ import {
 
 import { LOCATION_FILTERS_BY_VALUE } from "./../constants/filters";
 
+const API_URL = "https://turbovax.global.ssl.fastly.net/dashboard";
+// const API_URL = 'http://localhost:3000/dashboard'
+
 class BaseAppointments extends React.Component {
   state = {
     availableSites: [],
@@ -49,8 +52,9 @@ class BaseAppointments extends React.Component {
       updatedAt: props.updated_at,
       url: portal.url,
       showPortalName: portal.show_name_in_card,
+      type: portal.type,
       formattedAddress: props.formatted_address,
-      metadata: props.metadata,
+      metadata: portal.metadata,
     };
   }
 
@@ -93,9 +97,6 @@ class BaseAppointments extends React.Component {
       this.state
     );
 
-    // console.log(lowerCaseFilters)
-    // console.log(filterObjects)
-
     this.setState({
       ...this.state,
       filters: filterObjects,
@@ -113,47 +114,40 @@ class BaseAppointments extends React.Component {
 
     this.setState({ ...this.state, filters: filterArray });
 
-    axios
-      .get(`https://turbovax.global.ssl.fastly.net/dashboard`)
-      // .get(`http://localhost:3000/dashboard`)
-      .then((res) => {
-        const data = res.data;
+    axios.get(API_URL).then((res) => {
+      const data = res.data;
 
-        const portalsByKey = this.mapPortalByKey(data.portals);
-        // const portalsByKey = data.portals.map((portal) => this.mapPortalByKey(portal));
+      const portalsByKey = this.mapPortalByKey(data.portals);
+      // const portalsByKey = data.portals.map((portal) => this.mapPortalByKey(portal));
 
-        const mappedSites = data.locations
-          .map((list) => this.mapLocationToVars(list, portalsByKey))
-          .filter((site) => site.isActive);
+      const mappedSites = data.locations
+        .map((list) => this.mapLocationToVars(list, portalsByKey))
+        .filter((site) => site.isActive);
 
-        const sortedSites = mappedSites.sort((a, b) => {
-          if (a.lastAvailableAt > b.lastAvailableAt) {
-            return -1;
-          }
-          if (a.lastAvailableAt < b.lastAvailableAt) {
-            return 1;
-          }
-          return 0;
-        });
-
-        const availableSites = sortedSites.filter((site) => site.isAvailable);
-        const unavailableSites = sortedSites.filter(
-          (site) => !site.isAvailable
-        );
-
-        const updatedAtArray = sortedSites.map((site) => site.updatedAt);
-
-        const lastUpdatedAt = updatedAtArray.sort().reverse()[0];
-
-        this.setState({
-          availableSites: availableSites,
-          unavailableSites: unavailableSites,
-          showUnavailable,
-          lastUpdatedAt,
-          // totalCount,
-          // portals,
-        });
+      const sortedSites = mappedSites.sort((a, b) => {
+        if (a.lastAvailableAt > b.lastAvailableAt) {
+          return -1;
+        }
+        if (a.lastAvailableAt < b.lastAvailableAt) {
+          return 1;
+        }
+        return 0;
       });
+
+      const availableSites = sortedSites.filter((site) => site.isAvailable);
+      const unavailableSites = sortedSites.filter((site) => !site.isAvailable);
+
+      const lastUpdatedAt = data.last_updated_at;
+
+      this.setState({
+        availableSites: availableSites,
+        unavailableSites: unavailableSites,
+        showUnavailable,
+        lastUpdatedAt,
+        // totalCount,
+        // portals,
+      });
+    });
   }
 
   shouldComponentUpdate(prevProps, prevState, snapshot) {

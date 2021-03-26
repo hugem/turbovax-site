@@ -6,6 +6,19 @@ export default function Alert() {
   return (
     <Box my={2}>
       <MaterialAlert severity="info">
+        <b>Update (3/26):</b> We are now testing pharmacy availability from{" "}
+        <Link
+          target="_blank"
+          underline="always"
+          href="https://www.vaccinespotter.org/"
+          rel="noreferrer"
+        >
+          Vaccine Spotter
+        </Link>
+        . Please note that data may be out of date while we work out the kinks.{" "}
+        Educators, 50+, and those underlying conditions are pharmacy-eligible.
+      </MaterialAlert>
+      {/* <MaterialAlert severity="info">
         <b>Update (3/23):</b> NYS has{" "}
         <Link
           target="_blank"
@@ -26,7 +39,7 @@ export default function Alert() {
         </Link>{" "}
         (educators and those with underlying conditions are also pharmacy
         eligible).
-      </MaterialAlert>
+      </MaterialAlert> */}
     </Box>
   );
 }

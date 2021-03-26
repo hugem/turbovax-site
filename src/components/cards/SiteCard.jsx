@@ -94,12 +94,14 @@ export function DetailsRowWithGrid({
     components.push(portalNameToUse);
   }
 
-  components.push(
-    <span>
-      {count.toLocaleString()}{" "}
-      <Pluralize singular={appointmentWord} count={count} showCount={false} />
-    </span>
-  );
+  if (showPortalName || count > 0) {
+    components.push(
+      <span>
+        {count.toLocaleString()}{" "}
+        <Pluralize singular={appointmentWord} count={count} showCount={false} />
+      </span>
+    );
+  }
 
   if (lastAvailableAt !== null) {
     const lastAvailableWord = isAvailable ? "checked" : "available";
@@ -107,14 +109,13 @@ export function DetailsRowWithGrid({
     components.push(
       <span>
         {lastAvailableWord}{" "}
-        <Moment fromNow={true} parse="YYYY-MM-DD HH:mm">
-          {lastAvailableAt}
-        </Moment>
+        {/* <Moment fromNow={true} parse="YYYY-MM-DD HH:mm"> */}
+        <Moment fromNow={true}>{lastAvailableAt}</Moment>
       </span>
     );
   }
 
-  if (components.length === 1) {
+  if (components.length === 0) {
     return null;
   }
 
