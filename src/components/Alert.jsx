@@ -6,7 +6,7 @@ export default function Alert() {
   return (
     <Box my={2}>
       <MaterialAlert severity="info">
-        <b>Update (3/26):</b> We are now testing pharmacy availability from{" "}
+        <b>Update (3/26):</b> We are now testing pharmacy availability through{" "}
         <Link
           target="_blank"
           underline="always"
