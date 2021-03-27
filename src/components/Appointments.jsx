@@ -15,14 +15,15 @@ import {
 
 import { LOCATION_FILTERS_BY_VALUE } from "./../constants/filters";
 
-const API_URL = "https://turbovax.global.ssl.fastly.net/dashboard";
-// const API_URL = 'http://localhost:3000/dashboard'
+// const API_URL = "https://turbovax.global.ssl.fastly.net/dashboard";
+const API_URL = "http://localhost:3000/dashboard";
 
 class BaseAppointments extends React.Component {
   state = {
     availableSites: [],
     unavailableSites: [],
     showUnavailable: false,
+    hidePharmacies: false,
     lastUpdatedAt: null,
     filters: [],
   };
@@ -69,6 +70,29 @@ class BaseAppointments extends React.Component {
     });
   };
 
+  handleHidePharmaciesChange = (event, newValue) => {
+    var lowerCaseFilters = this.state.filters.map((filter) => filter.value);
+
+    this.props.history.push(
+      {
+        state: this.state,
+        // search: "?" + searchParams.toString(),
+        search:
+          "?" +
+          new URLSearchParams({
+            region: lowerCaseFilters,
+            hidePharmacies: newValue,
+          }).toString(),
+      },
+      this.state
+    );
+
+    this.setState({
+      ...this.state,
+      hidePharmacies: newValue,
+    });
+  };
+
   handleFilterClear = () => {
     var url = new URL(window.location.href);
     this.props.history.push(
@@ -81,6 +105,7 @@ class BaseAppointments extends React.Component {
     this.setState({
       ...this.state,
       filters: [],
+      hidePharmacies: false,
     });
   };
 
@@ -90,9 +115,12 @@ class BaseAppointments extends React.Component {
     this.props.history.push(
       {
         state: this.state,
-        // search: "?" + searchParams.toString(),
         search:
-          "?" + new URLSearchParams({ region: lowerCaseFilters }).toString(),
+          "?" +
+          new URLSearchParams({
+            region: lowerCaseFilters,
+            hidePharmacies: this.state.hidePharmacies,
+          }).toString(),
       },
       this.state
     );
@@ -105,14 +133,20 @@ class BaseAppointments extends React.Component {
 
   componentDidMount() {
     const showUnavailable = localStorage.getItem("showUnavailable") == "true";
-    const regionString = QueryString.parse(window.location.search).region || "";
+    const queryString = QueryString.parse(window.location.search);
+    const regionString = queryString.region || "";
+    const hidePharmaciesValue = queryString.hidePharmacies === "true";
 
     const filterArray = regionString
       .split(",")
       .filter((string) => string !== "")
       .map((filter) => LOCATION_FILTERS_BY_VALUE[filter.toLowerCase()]);
 
-    this.setState({ ...this.state, filters: filterArray });
+    this.setState({
+      ...this.state,
+      filters: filterArray,
+      hidePharmacies: hidePharmaciesValue,
+    });
 
     axios.get(API_URL).then((res) => {
       const data = res.data;
@@ -151,7 +185,9 @@ class BaseAppointments extends React.Component {
   }
 
   shouldComponentUpdate(prevProps, prevState, snapshot) {
-    const regionString = QueryString.parse(window.location.search).region || "";
+    const queryString = QueryString.parse(window.location.search);
+    const regionString = queryString.region || "";
+    const hidePharmaciesValue = queryString.hidePharmacies === "true";
     const filterArray = regionString
       .split(",")
       .filter((string) => string !== "")
@@ -163,6 +199,10 @@ class BaseAppointments extends React.Component {
       this.setState({ ...this.state, filters: filterArray });
     }
 
+    if (hidePharmaciesValue !== prevState.hidePharmacies) {
+      this.setState({ ...this.state, hidePharmacies: hidePharmaciesValue });
+    }
+
     return true;
   }
 
@@ -171,22 +211,27 @@ class BaseAppointments extends React.Component {
 
     const filterNames = this.state.filters.map((filter) => filter.name);
 
-    const activeAvailableSites = filterEnabled
+    let activeAvailableSites = filterEnabled
       ? this.state.availableSites.filter(
           (site) => filterNames.indexOf(site.area) >= 0
         )
       : this.state.availableSites;
 
-    const activeUnavailableSites = filterEnabled
+    let activeUnavailableSites = filterEnabled
       ? this.state.unavailableSites.filter(
           (site) => filterNames.indexOf(site.area) >= 0
         )
       : this.state.unavailableSites;
 
-    // const filterEnabled = this.state.filters.length > 0;
-    // const activeAvailableSites = this.state.availableSites;
+    if (this.state.hidePharmacies === true) {
+      activeAvailableSites = activeAvailableSites.filter(
+        (site) => site.type !== "pharmacy"
+      );
 
-    // const activeUnavailableSites = this.state.unavailableSites;
+      activeUnavailableSites = activeUnavailableSites.filter(
+        (site) => site.type !== "pharmacy"
+      );
+    }
 
     const totalCount = activeAvailableSites
       .map((site) => site.count)
@@ -212,11 +257,16 @@ class BaseAppointments extends React.Component {
           <FilterButton
             handleFilterClear={this.handleFilterClear}
             handleFilterChange={this.handleFilterChange}
+            handleHidePharmaciesChange={this.handleHidePharmaciesChange}
             filters={this.state.filters}
+            hidePharmacies={this.state.hidePharmacies}
           />
         </Box>
         <Box>
-          <AppointmentList sites={activeAvailableSites} />
+          <AppointmentList
+            sites={activeAvailableSites}
+            hidePharmacies={this.state.hidePharmacies}
+          />
           <ShowUnavailableCard
             filters={this.state.filters}
             foundAvailability={foundAvailability}

@@ -14,6 +14,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 
 import LocationFilter from "./LocationFilter";
+import HidePharmaciesFilter from "./HidePharmaciesFilter";
 
 const useStyles = makeStyles((theme) => ({
   typography: {
@@ -49,8 +50,11 @@ export default function FilterButton(props) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("xs"));
 
-  const buttonText =
-    props.filters.length > 0 ? `Filters (${props.filters.length})` : `Filters`;
+  let filterCount = props.filters.length;
+  if (props.hidePharmacies === true) {
+    filterCount += 1;
+  }
+  const buttonText = filterCount > 0 ? `Filters (${filterCount})` : `Filters`;
 
   return (
     <div>
@@ -74,12 +78,13 @@ export default function FilterButton(props) {
           <DialogContentText>
             <Box className={classes.box}>
               <LocationFilter {...props} />
+              <HidePharmaciesFilter {...props} />
             </Box>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClear} color="primary">
-            Clear All
+            Reset All
           </Button>
           <Button onClick={handleClose} color="primary" autoFocus>
             Done

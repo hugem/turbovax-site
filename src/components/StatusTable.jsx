@@ -13,35 +13,7 @@ const useStyles = makeStyles({
   table: {},
 });
 
-function createData(name, url, numSites, status, statusUpdatedAt) {
-  return { name, url, numSites, status, statusUpdatedAt };
-}
-
-const rows = [
-  createData(
-    "NYC Vaccine Hub/Vax4NYC",
-    "https://vax4nyc.nyc.gov/patient/s/",
-    31,
-    "Active",
-    "Mar 9"
-  ),
-  createData(
-    "NYC Health and Hospitals",
-    "https://covid19.nychealthandhospitals.org/UnaffiliatedHealthCareWorkers",
-    21,
-    "Active",
-    "Feb 8"
-  ),
-  createData(
-    "NYS Vaccination Centers",
-    "https://am-i-eligible.covid19vaccine.health.ny.gov/",
-    8,
-    "Active",
-    "Feb 20"
-  ),
-];
-
-export default function StatusTable() {
+export default function StatusTable({ portalData }) {
   const classes = useStyles();
 
   return (
@@ -50,22 +22,22 @@ export default function StatusTable() {
         <TableHead>
           <TableRow>
             <TableCell>Portal</TableCell>
+            <TableCell>Type</TableCell>
             <TableCell>Sites</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell>Updated at</TableCell>
+            <TableCell>Notes</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
+          {portalData.map((portal) => (
+            <TableRow key={portal.key}>
               <TableCell component="th" scope="row">
-                <Link target="_blank" href={row.url}>
-                  {row.name}
+                <Link target="_blank" href={portal.url}>
+                  {portal.name}
                 </Link>
               </TableCell>
-              <TableCell>{row.numSites}</TableCell>
-              <TableCell>{row.status}</TableCell>
-              <TableCell>{row.statusUpdatedAt}</TableCell>
+              <TableCell>{portal.type}</TableCell>
+              <TableCell>{portal.site_count}</TableCell>
+              <TableCell>{portal.metadata && portal.metadata.notes}</TableCell>
             </TableRow>
           ))}
         </TableBody>
