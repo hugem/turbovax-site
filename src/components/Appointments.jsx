@@ -15,14 +15,15 @@ import {
 
 import { LOCATION_FILTERS_BY_VALUE } from "./../constants/filters";
 
-// const API_URL = "https://turbovax.global.ssl.fastly.net/dashboard";
-const API_URL = "http://localhost:3000/dashboard";
+const API_URL = "https://turbovax.global.ssl.fastly.net/dashboard";
+// const API_URL = "http://localhost:3000/dashboard";
 
 class BaseAppointments extends React.Component {
   state = {
     availableSites: [],
     unavailableSites: [],
     showUnavailable: false,
+    showAllSites: false,
     hidePharmacies: false,
     lastUpdatedAt: null,
     filters: [],
@@ -128,6 +129,14 @@ class BaseAppointments extends React.Component {
     this.setState({
       ...this.state,
       filters: filterObjects,
+    });
+  };
+
+  handleShowAllSiteClick = (event) => {
+    console.log("hello");
+    this.setState({
+      ...this.state,
+      showAllSites: true,
     });
   };
 
@@ -266,6 +275,7 @@ class BaseAppointments extends React.Component {
           <AppointmentList
             sites={activeAvailableSites}
             hidePharmacies={this.state.hidePharmacies}
+            showAllSitesButton={false}
           />
           <ShowUnavailableCard
             filters={this.state.filters}
@@ -275,7 +285,12 @@ class BaseAppointments extends React.Component {
             showUnavailable={this.state.showUnavailable}
           />
           {this.state.showUnavailable && (
-            <AppointmentList sites={activeUnavailableSites} />
+            <AppointmentList
+              sites={activeUnavailableSites}
+              showAllSites={this.state.showAllSites}
+              showAllSitesButton={true}
+              handleShowAllSiteClick={this.handleShowAllSiteClick}
+            />
           )}
         </Box>
       </div>

@@ -1,14 +1,30 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
 import SiteCard from "./cards/SiteCard";
+import ShowAllSitesCard from "./cards/ShowAllSitesCard";
 
-export default function AppointmentList({ sites, hidePharmacies }) {
+const SHOW_SITE_LIMIT = 25;
+
+export default function AppointmentList({
+  sites,
+  hidePharmacies,
+  showAllSitesButton,
+  showAllSites,
+  handleShowAllSiteClick,
+}) {
   return (
     <Box>
-      {sites.map((site) =>
-        hidePharmacies && site.type === "pharmacy" ? null : (
+      {sites.map(function (site, index) {
+        if (!showAllSites && index > SHOW_SITE_LIMIT) {
+          return null;
+        }
+
+        return hidePharmacies && site.type === "pharmacy" ? null : (
           <SiteCard {...site} key={site.id} />
-        )
+        );
+      })}
+      {showAllSitesButton && !showAllSites && (
+        <ShowAllSitesCard handleShowAllSiteClick={handleShowAllSiteClick} />
       )}
     </Box>
   );
