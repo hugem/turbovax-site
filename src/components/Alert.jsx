@@ -6,17 +6,17 @@ export default function Alert() {
   return (
     <Box my={2}>
       <MaterialAlert severity="info">
-        <b>Update (3/26):</b> We are now testing pharmacy availability through{" "}
+        <b>Update (3/30):</b> Eligiblity is now open to ages 30+. See this{" "}
         <Link
           target="_blank"
           underline="always"
-          href="https://www.vaccinespotter.org/"
+          href="https://twitter.com/nycshotslots/status/1376657490302091271"
           rel="noreferrer"
         >
-          Vaccine Spotter
-        </Link>
-        . Please note that data may be out of date while we work out the kinks.{" "}
-        Educators, 50+, and those underlying conditions are pharmacy-eligible.
+          thread
+        </Link>{" "}
+        on what to expect. Note that it is always difficult to find an
+        appointments during the first few days of new a eligiblity window.
       </MaterialAlert>
       {/* <MaterialAlert severity="info">
         <b>Update (3/23):</b> NYS has{" "}
