@@ -6,18 +6,29 @@ export default function Alert() {
   return (
     <Box my={2}>
       <MaterialAlert severity="info">
-        <b>Update (3/30):</b> Eligiblity is now open to ages 30+. See this{" "}
+        <b>Update (4/1):</b> Both NYC/NYS have not yet released meaningful
+        amounts of availability since increasing eligiblity to 30+. Follow the{" "}
         <Link
           target="_blank"
           underline="always"
-          href="https://twitter.com/nycshotslots/status/1376657490302091271"
+          href="https://twitter.com/turbovax"
           rel="noreferrer"
         >
-          thread
+          twitter account
         </Link>{" "}
-        on what to expect. Note that it is always difficult to find an
-        appointments during the first few days of new a eligiblity window.
+        to be notified when it happens.{" "}
+        <Link
+          target="_blank"
+          underline="always"
+          href="https://www.cvs.com/immunizations/covid-19-vaccine?icid=cvs-home-hero1-link2-coronavirus-vaccine"
+          rel="noreferrer"
+        >
+          CVS
+        </Link>{" "}
+        tends to release new availability around 12–1AM ET.
       </MaterialAlert>
+      {/* Note that it is always difficult to find
+        appointments during the first few days of a new eligiblity window. */}
       {/* <MaterialAlert severity="info">
         <b>Update (3/23):</b> NYS has{" "}
         <Link

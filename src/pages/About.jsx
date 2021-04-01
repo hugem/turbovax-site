@@ -18,7 +18,7 @@ function Section(props) {
     </Box>
   );
 }
-const API_URL = "https://turbovax.global.ssl.fastly.net/summary";
+const API_URL = "https://api.turbovax.info/summary";
 // const API_URL = 'http://localhost:3000/summary'
 
 class About extends React.Component {
