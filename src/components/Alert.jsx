@@ -6,17 +6,16 @@ export default function Alert() {
   return (
     <Box my={2}>
       <MaterialAlert severity="info">
-        <b>Update (4/1):</b> Both NYC/NYS have not yet released meaningful
-        amounts of availability since increasing eligiblity to 30+. Follow the{" "}
+        <b>Update (4/2):</b> Vax4NYC bot is currently{" "}
         <Link
           target="_blank"
           underline="always"
-          href="https://twitter.com/turbovax"
+          href="https://twitter.com/turbovax/status/1378093844324044802"
           rel="noreferrer"
         >
-          twitter account
+          inactive
         </Link>{" "}
-        to be notified when it happens.{" "}
+        due to new restrictions on data access.{" "}
         <Link
           target="_blank"
           underline="always"
