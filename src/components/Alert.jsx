@@ -6,14 +6,15 @@ export default function Alert() {
   return (
     <Box my={2}>
       <MaterialAlert severity="info">
-        <b>Update (4/5):</b> Vax4NYC bot is back online but can only access{" "}
+        <b>Update (4/6):</b> Vax4NYC bot is back online but can only access one
+        day's{" "}
         <Link
           target="_blank"
           underline="always"
           href="https://twitter.com/turbovax/status/1379076002714898436"
           rel="noreferrer"
         >
-          one day worth of availability
+          worth of availability
         </Link>{" "}
         for now. Please see{" "}
         <Link
@@ -24,7 +25,17 @@ export default function Alert() {
         >
           this thread
         </Link>{" "}
-        for an idea of what to expect when eligiblity opens on Tuesday.
+        for an idea of what to expect when eligiblity opens on Tuesday. Note
+        that NYS site is currently experiencing{" "}
+        <Link
+          target="_blank"
+          underline="always"
+          href="https://twitter.com/turbovax/status/1379404965479919622"
+          rel="noreferrer"
+        >
+          site issues
+        </Link>
+        .
       </MaterialAlert>
       {/* Note that it is always difficult to find
         appointments during the first few days of a new eligiblity window. */}
