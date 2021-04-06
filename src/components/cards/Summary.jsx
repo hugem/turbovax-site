@@ -43,7 +43,6 @@ export default function Summary({
   const leftComponent = (
     <Typography>
       <strong className={classes.strong}>Updated</strong>:{" "}
-      {/* <Moment local calendar parse="YYYY-MM-DD HH:mm"> */}
       {lastUpdatedAt ? (
         <Moment local calendar>
           {lastUpdatedAt}

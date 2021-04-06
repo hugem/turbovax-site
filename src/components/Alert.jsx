@@ -6,25 +6,25 @@ export default function Alert() {
   return (
     <Box my={2}>
       <MaterialAlert severity="info">
-        <b>Update (4/2):</b> Vax4NYC bot is currently{" "}
+        <b>Update (4/5):</b> Vax4NYC bot is back online but can only access{" "}
         <Link
           target="_blank"
           underline="always"
-          href="https://twitter.com/turbovax/status/1378093844324044802"
+          href="https://twitter.com/turbovax/status/1379076002714898436"
           rel="noreferrer"
         >
-          inactive
+          one day worth of availability
         </Link>{" "}
-        due to new restrictions on data access.{" "}
+        for now. Please see{" "}
         <Link
           target="_blank"
           underline="always"
-          href="https://www.cvs.com/immunizations/covid-19-vaccine?icid=cvs-home-hero1-link2-coronavirus-vaccine"
+          href="https://twitter.com/turbovax/status/1379076005017624579"
           rel="noreferrer"
         >
-          CVS
+          this thread
         </Link>{" "}
-        tends to release new availability around 12–1AM ET.
+        for an idea of what to expect when eligiblity opens on Tuesday.
       </MaterialAlert>
       {/* Note that it is always difficult to find
         appointments during the first few days of a new eligiblity window. */}

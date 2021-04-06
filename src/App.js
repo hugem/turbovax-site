@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Faq from "./pages/Faq";
+import Resources from "./pages/Resources";
 import Disclaimer from "./pages/Disclaimer";
 import { Header } from "./components/index";
 import { THEME } from "./constants/theme";
@@ -65,6 +66,9 @@ export default function App() {
               </Route>
               <Route path="/faq">
                 <Faq pageName="Frequently Asked Questions" />
+              </Route>
+              <Route path="/resources">
+                <Resources pageName="Resources" />
               </Route>
             </Switch>
           </Container>
