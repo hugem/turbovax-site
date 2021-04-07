@@ -47,7 +47,12 @@ export default function HamburgerMenu(props) {
         <Divider />
         <ListItemLink onClick={props.onClick} to="/faq" primary="FAQ" />
         <Divider />
-        {/* <ListItemLink onClick={props.onClick} to="/resources" primary="Resources" /> */}
+        <ListItemLink
+          onClick={props.onClick}
+          to="/resources"
+          primary="Resources"
+        />
+        <Divider />
         {/* <ListItemLink to="/donate" primary="Donate" />
         <Divider /> */}
       </List>

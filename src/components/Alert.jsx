@@ -16,17 +16,7 @@ export default function Alert() {
         >
           worth of availability
         </Link>{" "}
-        for now. Please see{" "}
-        <Link
-          target="_blank"
-          underline="always"
-          href="https://twitter.com/turbovax/status/1379076005017624579"
-          rel="noreferrer"
-        >
-          this thread
-        </Link>{" "}
-        for an idea of what to expect when eligiblity opens on Tuesday. Note
-        that NYS site is currently experiencing{" "}
+        for now. NYS bot is offline until the site fixes its{" "}
         <Link
           target="_blank"
           underline="always"
