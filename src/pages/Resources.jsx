@@ -3,6 +3,7 @@ import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import { asPage } from "./../helpers/hoc";
+import CadenceTable from "./../components/CadenceTable";
 
 const content = [
   {
@@ -10,8 +11,8 @@ const content = [
     answer: (
       <Box>
         <Typography>
-          It's not easy to get a vaccine in NYC—demand still exceeds supply.
-          Some general tips:
+          It's not easy to get a vaccine in NYC—demand still greatly exceeds
+          supply. Some things to consider:
         </Typography>
       </Box>
     ),
@@ -21,7 +22,7 @@ const content = [
         and that's very normal.
       </Typography>,
       <Typography>
-        Call independent pharmacies (see{" "}
+        Call independent pharmacies (find them via{" "}
         <Link href="#useful-website-and-twitter-accounts">links</Link> below)
       </Typography>,
       <Typography>
@@ -70,7 +71,7 @@ const content = [
         >
           @MarkLevineNYC
         </Link>{" "}
-        shares useful news as Chair of NYC's Health Committee
+        shares useful news as Chair of City's Health Committee
       </Typography>,
       <Typography>
         <Link
@@ -109,9 +110,30 @@ const content = [
         >
           Vaccine Spotter
         </Link>{" "}
-        are two useful real-time aggregators for the New York area
+        are two real-time aggregators for the New York area built by volunteers
       </Typography>,
     ],
+  },
+  {
+    question: "Release Cadence",
+    answer: (
+      <Box>
+        <Typography>
+          Note: some of the below information is anecdotal (* means unverified).
+          Feel free to let me know at{" "}
+          <Link
+            href="mailto:huge@turbovax.info"
+            target="_blank"
+            rel="noreferrer"
+          >
+            huge@turbovax.info
+          </Link>{" "}
+          if something is incorrect.
+        </Typography>
+        <br />
+        <CadenceTable />
+      </Box>
+    ),
   },
   {
     question: "Booking Guides",
@@ -227,12 +249,6 @@ const content = [
         </Link>
       </Typography>,
     ],
-  },
-  {
-    question: "Release Cadence",
-    answer: (
-      <Typography>Note: that the below information is anecdotal.</Typography>
-    ),
   },
   {
     question: "Book by phone",
