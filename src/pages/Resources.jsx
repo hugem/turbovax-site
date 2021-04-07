@@ -38,6 +38,13 @@ const content = [
         <Link href="#appointment-booking-assistance">help</Link>
       </Typography>,
       <Typography>
+        Residents 75+ and a plus one can walk up to{" "}
+        <Link href="https://twitter.com/jbray1027/status/1379608572825309184">
+          one of 26
+        </Link>{" "}
+        vax sites to be vaccinated without appointment
+      </Typography>,
+      <Typography>
         Wait, if you can afford to. There will be much more vaccine supply{" "}
         <Link
           href="https://www.bloomberg.com/graphics/covid-vaccine-tracker-global-distribution/"
@@ -92,7 +99,15 @@ const content = [
         >
           Vaccine Finder
         </Link>{" "}
-        is a CDC-run directory of clinics and pharmacies.
+        is a CDC-run directory of clinics and pharmacies (note: includes{" "}
+        <Link
+          href="https://twitter.com/doris2474/status/1379426085813817345"
+          target="_blank"
+          rel="noreferrer"
+        >
+          independent pharmacies
+        </Link>{" "}
+        that are not listed on NYC's Vaccine Finder).
       </Typography>,
       <Typography>
         <Link
@@ -111,6 +126,24 @@ const content = [
           Vaccine Spotter
         </Link>{" "}
         are two real-time aggregators for the New York area built by volunteers
+      </Typography>,
+      <Typography>
+        <Link
+          href="https://twitter.com/LongIslandVax"
+          target="_blank"
+          rel="noreferrer"
+        >
+          @LongIslandVax
+        </Link>{" "}
+        for Long Island and{" "}
+        <Link
+          href="https://twitter.com/nj_vaccine"
+          target="_blank"
+          rel="noreferrer"
+        >
+          @nj_vaccine
+        </Link>{" "}
+        for New Jersey
       </Typography>,
     ],
   },

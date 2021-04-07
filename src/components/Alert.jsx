@@ -10,9 +10,9 @@ export default function Alert() {
         <b>Update (4/7 2:56PM):</b> Few appointments released so far today. See
         the new{" "}
         <Link component={RouterLink} to="/resources" underline="always">
-          Resources page
+          resources
         </Link>{" "}
-        for some tips on how to optimize your search.
+        page for some tips on how to optimize your search.
       </MaterialAlert>
       {/* Note that it is always difficult to find
         appointments during the first few days of a new eligiblity window. */}
