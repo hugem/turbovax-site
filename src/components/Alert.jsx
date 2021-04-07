@@ -1,31 +1,18 @@
 import MaterialAlert from "@material-ui/lab/Alert";
 import Link from "@material-ui/core/Link";
+import { Link as RouterLink } from "react-router-dom";
 import Box from "@material-ui/core/Box";
 
 export default function Alert() {
   return (
     <Box my={2}>
       <MaterialAlert severity="info">
-        <b>Update (4/6):</b> Vax4NYC bot is back online but can only access one
-        day's{" "}
-        <Link
-          target="_blank"
-          underline="always"
-          href="https://twitter.com/turbovax/status/1379076002714898436"
-          rel="noreferrer"
-        >
-          worth of availability
+        <b>Update (4/7 2:56PM):</b> Few appointments released so far today. See
+        the new{" "}
+        <Link component={RouterLink} to="/resources" underline="always">
+          Resources page
         </Link>{" "}
-        for now. NYS bot is offline until the site fixes its{" "}
-        <Link
-          target="_blank"
-          underline="always"
-          href="https://twitter.com/turbovax/status/1379404965479919622"
-          rel="noreferrer"
-        >
-          site issues
-        </Link>
-        .
+        for some tips on how to optimize your search.
       </MaterialAlert>
       {/* Note that it is always difficult to find
         appointments during the first few days of a new eligiblity window. */}

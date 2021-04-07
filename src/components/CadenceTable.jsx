@@ -33,7 +33,7 @@ const PORTAL_DATA = [
   },
   {
     name: "CVS",
-    time: "Nightly 12–1AM, every half hour",
+    time: "Nightly 12–2AM, every half hour",
     notes:
       "Try Queens, NY or Brooklyn, NY if zip code doesn't return any locations",
   },
