@@ -23,7 +23,7 @@ const content = [
       </Typography>,
       <Typography>
         Call independent pharmacies (find them via{" "}
-        <Link href="#useful-website-and-twitter-accounts">links</Link> below)
+        <Link href="#useful-websites-and-twitter-accounts">links</Link> below)
       </Typography>,
       <Typography>
         Call <Link href="#book-by-phone">government hotlines</Link>
@@ -57,9 +57,10 @@ const content = [
     ],
   },
   {
-    question: "Useful Website and Twitter accounts",
+    question: "Useful Websites and Twitter accounts",
     items: [
       <Typography>
+        Carolyn at{" "}
         <Link
           href="https://twitter.com/nycshotslots"
           target="_blank"
@@ -67,7 +68,7 @@ const content = [
         >
           @nycshotslots
         </Link>{" "}
-        account tweets out vaccine openings around the city
+        tweets out vaccine openings around the city
       </Typography>,
       <Typography>
         Councilmember{" "}
@@ -88,7 +89,7 @@ const content = [
         >
           NYC Vaccine Finder
         </Link>{" "}
-        is is a city-run directory of *all* vaccine sites in the city (real-time
+        is a city-run directory of *all* vaccine sites in the city (real-time
         availability functionality is limited).
       </Typography>,
       <Typography>
@@ -99,7 +100,7 @@ const content = [
         >
           Vaccine Finder
         </Link>{" "}
-        is a CDC-run directory of clinics and pharmacies (note: includes{" "}
+        is a CDC-run directory of clinidcs and pharmacies (note: includes{" "}
         <Link
           href="https://twitter.com/doris2474/status/1379426085813817345"
           target="_blank"
@@ -152,8 +153,8 @@ const content = [
     answer: (
       <Box>
         <Typography>
-          Note: some of the below information is anecdotal (* means unverified).
-          Feel free to let me know at{" "}
+          Note: the below information is anecdotal (* means unverified) and
+          subject to change. Feel free to let me know at{" "}
           <Link
             href="mailto:huge@turbovax.info"
             target="_blank"
@@ -217,7 +218,7 @@ const content = [
         </Link>{" "}
         (
         <Link
-          href="https://docs.google.com/document/d/18GW5shE0CGDyXONitWkAcepaCGvcmbtoFkQOmcgfkPQ/edit"
+          href="https://documentedny.com/2021/02/17/covid-19-la-vacuna-para-inmigrantes-de-nueva-york/"
           target="_blank"
           rel="noreferrer"
         >
@@ -270,7 +271,10 @@ const content = [
           rel="noreferrer"
         >
           Brooklyn Vax Squad
-        </Link>
+        </Link>{" "}
+        (focus on vulnerable New Yorkers, i.e. health-compromised, elderly,
+        English language challenged, refugees, those without reliable internet,
+        etc.)
       </Typography>,
       <Typography>
         <Link

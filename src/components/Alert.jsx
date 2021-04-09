@@ -7,12 +7,19 @@ export default function Alert() {
   return (
     <Box my={2}>
       <MaterialAlert severity="info">
-        <b>Update (4/7 2:56PM):</b> Few appointments released so far today. See
-        the new{" "}
+        <b>Update (4/8):</b> See the new{" "}
         <Link component={RouterLink} to="/resources" underline="always">
           resources
         </Link>{" "}
-        page for some tips on how to optimize your search.
+        page for some tips on how to optimize your search. Residents 75+ and a
+        plus one can walk up to{" "}
+        <Link
+          href="https://twitter.com/jbray1027/status/1379608572825309184"
+          underline="always"
+        >
+          one of 26
+        </Link>{" "}
+        vax sites to be vaccinated without appointment.
       </MaterialAlert>
       {/* Note that it is always difficult to find
         appointments during the first few days of a new eligiblity window. */}

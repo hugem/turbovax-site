@@ -8,6 +8,7 @@ export default function Disclaimer() {
     <div>
       <Typography>Last updated: February 14, 2021</Typography>
       <br />
+
       <Typography variant="h5">Interpretation and Definitions</Typography>
       <br />
       <br />
@@ -93,6 +94,22 @@ export default function Disclaimer() {
       <Typography>
         The Company does not warrant that the Service is free of viruses or
         other harmful components.
+      </Typography>
+      <br />
+      <br />
+      <Typography variant="h5">
+        Notice of Non-Affiliation and Disclaimer
+      </Typography>
+      <br />
+      <Typography>
+        The Company is not affiliated, associated, authorized, endorsed by, or
+        in any way officially connected with Intuit, Inc or any of its
+        subsidiaries or its affiliates.
+      </Typography>
+      <br />
+      <Typography>
+        The names TurboTax as well as related names, marks, emblems and images
+        are registered trademarks of their respective owners.
       </Typography>
       <br />
       <br />

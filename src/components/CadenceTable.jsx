@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 const PORTAL_DATA = [
   {
     name: "Vax4NYC",
-    time: "15 minute intervals, larger drops at 11:45PM/12AM*",
+    time: "Nightly ~8:30PM, random cancellations through the day",
     notes:
       "Some slots are currently withheld for 65+. If unbooked, they will be released the night before the scheduled appointment.",
   },
