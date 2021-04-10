@@ -7,12 +7,19 @@ export default function Alert() {
   return (
     <Box my={2}>
       <MaterialAlert severity="info">
-        <b>Update (4/8):</b> See the new{" "}
+        <b>Update (4/9):</b> The Vax4NYC bot is{" "}
+        <Link
+          href="https://twitter.com/turbovax/status/1380511401660325889"
+          underline="always"
+        >
+          down
+        </Link>
+        . In the interim, see the{" "}
         <Link component={RouterLink} to="/resources" underline="always">
-          resources
+          resources page
         </Link>{" "}
-        page for some tips on how to optimize your search. Residents 75+ and a
-        plus one can walk up to{" "}
+        for tips on how to optimize your search. Residents 75+ and a plus one
+        can walk up to{" "}
         <Link
           href="https://twitter.com/jbray1027/status/1379608572825309184"
           underline="always"

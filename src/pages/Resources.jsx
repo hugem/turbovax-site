@@ -285,6 +285,26 @@ const content = [
           Covid Vaccine Help - New York (Facebook Group)
         </Link>
       </Typography>,
+      <Typography>
+        <Link
+          href="https://form.typeform.com/to/rvX94qAe"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Neighbor Network
+        </Link>{" "}
+        (focus on New Yorkers 60+ but open to all)
+      </Typography>,
+      <Typography>
+        <Link
+          href="http://minkwon.org/resources/minkwons-response-to-covid-19"
+          target="_blank"
+          rel="noreferrer"
+        >
+          MinKwon Community
+        </Link>{" "}
+        (Korean and Chinese language assistance available)
+      </Typography>,
     ],
   },
   {

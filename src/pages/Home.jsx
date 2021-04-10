@@ -7,7 +7,7 @@ export default function Home() {
       <Box mb={5}>
         <Intro />
       </Box>
-      <Alert />
+      {/* <Alert /> */}
       <Appointments />
     </div>
   );
