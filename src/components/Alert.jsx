@@ -7,26 +7,22 @@ export default function Alert() {
   return (
     <Box my={2}>
       <MaterialAlert severity="info">
-        <b>Update (4/9):</b> The Vax4NYC bot is{" "}
+        <b>Update (4/11):</b> Thanks to a{" "}
         <Link
-          href="https://twitter.com/turbovax/status/1380511401660325889"
+          href="https://twitter.com/turbovax/status/1380894697560883202"
           underline="always"
         >
-          down
+          partnership
+        </Link>{" "}
+        with NYC DoITT, the Vax4NYC bot is back online. Thanks to improvements
+        to{" "}
+        <Link
+          href="https://www.vaccinespotter.org/NY/?zip=10001"
+          underline="always"
+        >
+          Vaccine Spotter
         </Link>
-        . In the interim, see the{" "}
-        <Link component={RouterLink} to="/resources" underline="always">
-          resources page
-        </Link>{" "}
-        for tips on how to optimize your search. Residents 75+ and a plus one
-        can walk up to{" "}
-        <Link
-          href="https://twitter.com/jbray1027/status/1379608572825309184"
-          underline="always"
-        >
-          one of 26
-        </Link>{" "}
-        vax sites to be vaccinated without appointment.
+        , TurboVax now supports availability for 200+ independent pharmacies.
       </MaterialAlert>
       {/* Note that it is always difficult to find
         appointments during the first few days of a new eligiblity window. */}

@@ -16,8 +16,8 @@ import {
 import { LOCATION_FILTERS_BY_VALUE } from "./../constants/filters";
 
 // const API_URL = "https://turbovax.global.ssl.fastly.net/dashboard";
-const API_URL = "https://api.turbovax.info/dashboard";
-// const API_URL = "http://localhost:3000/dashboard";
+// const API_URL = "https://api.turbovax.info/dashboard";
+const API_URL = "http://localhost:3000/dashboard";
 
 class BaseAppointments extends React.Component {
   state = {
