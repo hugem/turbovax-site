@@ -301,7 +301,7 @@ const content = [
           target="_blank"
           rel="noreferrer"
         >
-          MinKwon Community
+          MinKwon Center
         </Link>{" "}
         (Korean and Chinese language assistance available)
       </Typography>,

@@ -10,12 +10,13 @@ export default function AppointmentList({
   hidePharmacies,
   showAllSitesButton,
   showAllSites,
+  useSiteLimit,
   handleShowAllSiteClick,
 }) {
   return (
     <Box>
       {sites.map(function (site, index) {
-        if (!showAllSites && index > SHOW_SITE_LIMIT) {
+        if (useSiteLimit && !showAllSites && index > SHOW_SITE_LIMIT) {
           return null;
         }
 
