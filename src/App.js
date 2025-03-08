@@ -79,7 +79,7 @@ function Footer() {
   const classes = useStyles();
   return (
     <footer align="center" className={classes.footer}>
-      <Typography className={classes.footerText}>2021 © TurboVax</Typography>
+      <Typography className={classes.footerText}>2022 © TurboVax</Typography>
       <br></br>
       <Typography>
         <Link to="/disclaimer" className={classes.a}>
